@@ -1,0 +1,44 @@
+{
+  "languages": [
+    {
+      "key": "mx",
+      "name": "Español",
+      "locale": "es-MX"
+    },
+    {
+      "key": "us",
+      "name": "English",
+      "locale": "en-US"
+    }
+  ],
+  "brandName": [
+    {
+      "locale": "es-MX",
+      "text": "Licencias y Permisos"
+    },
+    {
+      "locale": "en-US",
+      "text": "Licencias y Permisos"
+    }
+  ],
+  "titles": [
+    {
+      "locale": "es-MX",
+      "text": "El mejor gestor de permisos en México."
+    },
+    {
+      "locale": "en-US",
+      "text": "The best Permits Manager in Mexico."
+    }
+  ],
+  "serviceDescription": [
+    {
+      "locale": "es-MX",
+      "text": "Somos Licencias y Permisos, el Grupo de Gestores de Trámites y Licencias más Confiable y Veloz en México. Obtén tus permisos y licencias de manera eficiente y sin complicaciones. Contáctanos para solicitar una cotización o resolver tus dudas. Confía en nosotros para obtener tus trámites de manera ágil y sin contratiempos."
+    },
+    {
+      "locale": "en-US",
+      "text": "We are the most reliable and efficient Group of Tramiters and License Managers in Mexico. Obtain your permits and licenses efficiently and without complications. Contact us to request a quote or to answer any questions. Trust us to obtain your procedures in an agile and uncomplicated way."
+    }
+  ]
+}

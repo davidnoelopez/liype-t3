@@ -1,4 +1,5 @@
 import { type AppType } from "next/app";
+import "node_modules/flag-icons/css/flag-icons.min.css";
 
 import { api } from "~/utils/api";
 

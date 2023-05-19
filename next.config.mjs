@@ -15,8 +15,10 @@ const config = {
    * @see https://github.com/vercel/next.js/issues/41980
    */
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+    // providing the locales supported by your application
+    locales: ["en-US", "es-MX"],
+    //  default locale used when the non-locale paths are visited
+    defaultLocale: "es-MX",
   },
 };
 export default config;
