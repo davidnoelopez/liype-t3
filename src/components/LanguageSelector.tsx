@@ -24,7 +24,6 @@ interface Props {
 
 export const LanguageSelector = ({ languages }: Props) => {
   const { locale, asPath } = useRouter();
-  console.log({ locale, asPath });
   const defaultLanguage = {
     key: "mx",
     name: "Español",

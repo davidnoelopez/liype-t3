@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
-import { LanguageSelector } from "./LanguageSelector";
+import { LanguageSelector } from "../LanguageSelector";
 import Image from "next/image";
 import Link from "next/link";
 import { DefaultData } from "~/types";
+import { api } from "../../utils/api";
 
 const navigation = [
   { name: "Product", href: "#" },
@@ -19,11 +20,11 @@ interface Props {
 }
 
 export default function Hero({ defaultData }: Props) {
-  console.log(defaultData);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { locale } = useRouter();
-  const brandName = defaultData.brandName.filter((t) => t.locale === locale)[0]
-    ?.text;
+  const brandName = api.pageData.getLocaleDataByName
+    .useQuery("brandName")
+    .data?.localeData.filter((t) => t.locale === locale)[0]?.text;
   const title = defaultData.titles.filter((t) => t.locale === locale)[0]?.text;
   const serviceDescription = defaultData.serviceDescription.filter(
     (t) => t.locale === locale
