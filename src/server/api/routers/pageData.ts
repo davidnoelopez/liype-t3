@@ -7,11 +7,16 @@ export const pageDataRouter = createTRPCRouter({
     return ctx.prisma.pageData.findMany();
   }),
   getLocaleDataByName: publicProcedure
-    .input(z.string())
+    .input(z.object({ name: z.string(), locale: z.string().optional() }))
     .query(({ ctx, input }) => {
       return ctx.prisma.pageData.findUnique({
-        select: { localeData: { select: { locale: true, text: true } } },
-        where: { name: input },
+        select: {
+          localeData: {
+            select: { text: true },
+            where: { locale: input.locale },
+          },
+        },
+        where: { name: input.name },
       });
     }),
 });

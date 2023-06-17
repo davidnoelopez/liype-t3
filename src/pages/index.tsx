@@ -1,16 +1,14 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
 import Hero from "../components/Hero";
 import defaultData from "./assets/defaultData.json";
 import { DefaultData } from "~/types";
+import Navbar from "../components/Navbar";
 
 function Home() {
   return (
-    <div>
-      <main>
-        <Hero defaultData={defaultData as DefaultData} />
-      </main>
-    </div>
+    <main className="h-full">
+      <Navbar defaultData={defaultData as DefaultData} />
+      <Hero defaultData={defaultData as DefaultData} />
+    </main>
   );
 }
 export default Home;

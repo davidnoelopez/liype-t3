@@ -1,9 +1,16 @@
-import { type Config } from "tailwindcss";
+/**
+ * @type {import('@types/tailwindcss/tailwind-config').TailwindConfig}
+ */
 
-export default {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+module.exports = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite/**/*.js",
+    "./node_modules/tw-elements/dist/js/**/*.js",
+  ],
   theme: {
     extend: {},
   },
-  plugins: [],
-} satisfies Config;
+  plugins: [require("flowbite/plugin"), require("tw-elements/dist/plugin.cjs")],
+  darkMode: "media",
+};
