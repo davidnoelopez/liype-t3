@@ -1,5 +1,7 @@
 "use client";
 import { Carousel } from "flowbite-react";
+import { useEffect, useRef, useState } from "react";
+import { set } from "zod";
 
 interface Service {
   id: number;
@@ -64,41 +66,64 @@ const ServicesData: Service[] = [
 type Props = {};
 
 const Services = (props: Props) => {
+  const scrollRef = useRef(null);
+  const [scrollDirection, setScrollDirection] = useState<1 | -1>(1);
+
+  useEffect(() => {
+    const autoScroll = () => {
+      if (scrollRef.current) {
+        const element = scrollRef.current as HTMLDivElement;
+        const maxScrollLeft = element.scrollWidth - element.clientWidth - 1;
+
+        if (scrollDirection === 1 && element.scrollLeft >= maxScrollLeft) {
+          setScrollDirection(-1);
+        } else if (scrollDirection === -1 && element.scrollLeft === 0) {
+          setScrollDirection(1);
+        }
+
+        element.scrollBy({
+          top: 0,
+          left: scrollDirection,
+        });
+      }
+    };
+
+    const interval = setInterval(() => {
+      autoScroll();
+    }, 50);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
     <div id="services">
       <h1 className="mb-12 text-center text-3xl font-bold text-gray-900 dark:text-white">
         Contamos con amplio catalogo de servicios
       </h1>
-      <div className="grid grid-cols-2 gap-4 pb-20 md:grid-cols-4 lg:grid-cols-6">
-        {ServicesData.map((service) => (
-          <a
-            key={service.id}
-            className="block max-w-sm rounded-lg border border-gray-200 bg-white p-4 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-          >
-            {/* <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Permiso
-            </h5> */}
-            <p className="font-normal text-gray-700 dark:text-gray-400">
-              {service.title}
-            </p>
-          </a>
-        ))}
-      </div>
-      <div className="h-52 w-56">
-        <Carousel>
-          {ServicesData.map((service) => (
-            <div key={service.id} className="w-full">
-              <a className="block max-w-sm rounded-lg border border-gray-200 bg-white p-4 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+
+      <div className="p-auto m-auto flex flex-col">
+        <div
+          className="hide-scroll-bar flex overflow-x-scroll pb-10"
+          ref={scrollRef}
+        >
+          <div className="flex flex-nowrap ">
+            {ServicesData.map((service) => (
+              <div
+                key={service.id}
+                className="mr-4 inline-block h-48 w-48 max-w-xs overflow-hidden rounded-lg border border-gray-200 bg-white p-4 text-center align-middle shadow-md transition-shadow duration-300 ease-in-out hover:bg-gray-100 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+              >
                 {/* <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               Permiso
             </h5> */}
                 <p className="font-normal text-gray-700 dark:text-gray-400">
                   {service.title}
                 </p>
-              </a>
-            </div>
-          ))}
-        </Carousel>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
