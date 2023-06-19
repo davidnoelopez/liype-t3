@@ -95,7 +95,7 @@ const Services = (props: Props) => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [scrollDirection]);
 
   return (
     <div id="services">
@@ -105,7 +105,7 @@ const Services = (props: Props) => {
 
       <div className="p-auto m-auto flex flex-col">
         <div
-          className="hide-scroll-bar flex overflow-x-scroll pb-10"
+          className="no-scrollbar flex overflow-x-scroll pb-10"
           ref={scrollRef}
         >
           <div className="flex flex-nowrap ">
