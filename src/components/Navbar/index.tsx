@@ -21,6 +21,16 @@ interface Props {
 const index = ({ defaultData }: Props) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { locale } = useRouter();
+  const [mode, setMode] = useState("");
+
+  useEffect(() => {
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (event) => {
+        const colorScheme = event.matches ? "dark" : "light";
+        setMode(colorScheme);
+      });
+  }, []);
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -37,7 +47,11 @@ const index = ({ defaultData }: Props) => {
           <Link href="/" className="m-1.5 h-auto w-36 p-1.5">
             <span className="sr-only">Licencias y Permisos</span>
             <Image
-              src="/assets/logoLIYPE.png"
+              src={
+                mode === "dark"
+                  ? "/assets/logoLIYPE_light.png"
+                  : "/assets/logoLIYPE_dark.png"
+              }
               alt="Licencias y Permisos"
               width={132}
               height={40}
@@ -50,7 +64,11 @@ const index = ({ defaultData }: Props) => {
             href="/contact"
             className="mr-4 rounded-md bg-indigo-600 px-3.5 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Contacto
+            {
+              defaultData.contactButtonText.filter(
+                (t) => t.locale === locale
+              )[0]?.text
+            }
           </Link>
           <button
             type="button"
