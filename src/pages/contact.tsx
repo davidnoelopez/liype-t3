@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "~/components/Navbar";
-import defaultData from "./assets/defaultData.json";
+import { defaultData } from "./assets/defaultData";
 import { DefaultData } from "~/types";
 
 type Props = {};
@@ -8,7 +8,7 @@ type Props = {};
 const contact = (props: Props) => {
   return (
     <main>
-      <Navbar defaultData={defaultData as DefaultData} />
+      <Navbar defaultData={defaultData} />
       <div className="relative isolate bg-white px-6 pt-14 dark:bg-gray-900 md:px-8">
         <section className="">
           <div className="mx-auto max-w-screen-md px-4 py-8 lg:py-16">
@@ -30,7 +30,7 @@ const contact = (props: Props) => {
                 <input
                   type="email"
                   id="email"
-                  className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light"
+                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-primary-500 dark:focus:ring-primary-500"
                   placeholder="name@flowbite.com"
                   required
                 />
@@ -45,7 +45,7 @@ const contact = (props: Props) => {
                 <input
                   type="text"
                   id="subject"
-                  className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-sm text-gray-900 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light"
+                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-primary-500 dark:focus:ring-primary-500"
                   placeholder="Let us know how we can help you"
                   required
                 />
@@ -60,13 +60,13 @@ const contact = (props: Props) => {
                 <textarea
                   id="message"
                   rows={6}
-                  className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                   placeholder="Leave a comment..."
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 rounded-lg px-5 py-3 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 sm:w-fit"
+                className="rounded-lg bg-primary-700 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
               >
                 Send message
               </button>

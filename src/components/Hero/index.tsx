@@ -16,6 +16,9 @@ export default function Hero({ defaultData }: Props) {
   const serviceDescription = defaultData.serviceDescription.filter(
     (t) => t.locale === locale
   )[0]?.text;
+  const callToAction = defaultData.callToAction.filter(
+    (t) => t.locale === locale
+  )[0]?.text;
 
   return (
     <div className="h-full bg-white dark:bg-gray-900">
@@ -47,15 +50,6 @@ export default function Hero({ defaultData }: Props) {
         </div>
 
         <div className="mx-auto max-w-2xl py-32 sm:py-48 md:py-48">
-          {/* <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full py-1 px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              Announcing our next round of funding.{' '}
-              <a href="#" className="font-semibold text-indigo-600">
-                <span className="absolute inset-0" aria-hidden="true" />
-                Read more <span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
-          </div> */}
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-6xl ">
               {brandName}
@@ -66,19 +60,20 @@ export default function Hero({ defaultData }: Props) {
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-500">
               {serviceDescription}
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="mt-8 flex flex-col items-center justify-center space-y-4 px-28">
+              <p className="text-lg font-bold leading-8 text-gray-600 dark:text-gray-500">
+                {callToAction}
+              </p>
               <Link
                 href="/contact"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="w-fit rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Get started
+                {
+                  defaultData.contactButtonText.filter(
+                    (t) => t.locale === locale
+                  )[0]?.text
+                }
               </Link>
-              <a
-                href="#"
-                className="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 dark:text-gray-200 dark:hover:text-gray-300"
-              >
-                Learn more <span aria-hidden="true">→</span>
-              </a>
             </div>
           </div>
         </div>

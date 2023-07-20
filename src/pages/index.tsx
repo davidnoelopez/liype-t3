@@ -1,5 +1,5 @@
 import Hero from "../components/Hero";
-import defaultData from "./assets/defaultData.json";
+import { defaultData } from "./assets/defaultData";
 import { DefaultData } from "~/types";
 import Navbar from "../components/Navbar";
 
