@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "~/components/Navbar";
-import { defaultData } from "./assets/defaultData";
-import { DefaultData } from "~/types";
+import { defaultData } from "~/utils/assets/defaultData";
 
 type Props = {};
 
