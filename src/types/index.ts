@@ -14,4 +14,6 @@ export interface DefaultData {
   brandName: LocalizedText[];
   titles: LocalizedText[];
   serviceDescription: LocalizedText[];
+  callToAction: LocalizedText[];
+  contactButtonText: LocalizedText[];
 }
