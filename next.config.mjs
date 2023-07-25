@@ -16,9 +16,10 @@ const config = {
    */
   i18n: {
     // providing the locales supported by your application
-    locales: ["en-US", "es-MX"],
+    locales: ["es-MX", "en-US"],
     //  default locale used when the non-locale paths are visited
     defaultLocale: "es-MX",
+    localeDetection: false,
   },
 };
 export default config;
