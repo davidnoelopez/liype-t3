@@ -11,7 +11,7 @@ const Layout = ({ children }: Props) => {
     <div className="h-full">
       <Meta />
       <Navbar defaultData={defaultData} />
-      <main className="relative z-10">{children}</main>
+      <main>{children}</main>
     </div>
   );
 };
