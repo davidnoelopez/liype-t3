@@ -1,13 +1,18 @@
-import { useEffect, useRef, useState } from "react";
-import { LocalizedText } from "~/types";
 import { useRouter } from "next/router";
+import { type ReactElement } from "react";
+import { BiStore } from "react-icons/bi";
+import { MdHealthAndSafety } from "react-icons/md";
+import { PiBeerBottleFill } from "react-icons/pi";
+import { RiGovernmentLine } from "react-icons/ri";
+import { LocalizedText } from "~/types";
 
 interface Service {
   id: number;
   title: LocalizedText[];
   desription?: LocalizedText[];
+  icon?: ReactElement;
 }
-const mainServices: Service[] = [
+const MainServices: Service[] = [
   {
     id: 1,
     title: [
@@ -30,6 +35,7 @@ const mainServices: Service[] = [
         text: "Obtaining and management of alcohol sales license.",
       },
     ],
+    icon: <PiBeerBottleFill className="h-6 w-6" />,
   },
   {
     id: 2,
@@ -53,6 +59,7 @@ const mainServices: Service[] = [
         text: "Obtaining and management of commercial use license.",
       },
     ],
+    icon: <BiStore className="h-6 w-6" />,
   },
   {
     id: 3,
@@ -76,6 +83,7 @@ const mainServices: Service[] = [
         text: "Obtaining and management of health license.",
       },
     ],
+    icon: <MdHealthAndSafety className="h-6 w-6" />,
   },
   {
     id: 4,
@@ -99,10 +107,11 @@ const mainServices: Service[] = [
         text: "Government procedures management.",
       },
     ],
+    icon: <RiGovernmentLine className="h-6 w-6" />,
   },
 ];
 
-const ServicesData: Service[] = [
+const OtherServices: Service[] = [
   {
     id: 1,
     title: [
@@ -165,19 +174,6 @@ const ServicesData: Service[] = [
       {
         locale: "en-US",
         text: "Feasibility and Land Use, Construction, Building, and Completion Permit",
-      },
-    ],
-  },
-  {
-    id: 6,
-    title: [
-      {
-        locale: "es-MX",
-        text: "Licencias de Alcoholes",
-      },
-      {
-        locale: "en-US",
-        text: "Alcohol Licenses",
       },
     ],
   },
@@ -248,119 +244,47 @@ const ServicesData: Service[] = [
   },
 ];
 
-type Props = {};
-
-const Services = (props: Props) => {
+const Services = () => {
   const { locale } = useRouter();
 
-  const scrollRef = useRef(null);
-  const [scrollDirection, setScrollDirection] = useState<1 | -1>(1);
-
-  useEffect(() => {
-    const autoScroll = () => {
-      if (scrollRef.current) {
-        const element = scrollRef.current as HTMLDivElement;
-        const maxScrollLeft = element.scrollWidth - element.clientWidth - 1;
-
-        if (scrollDirection === 1 && element.scrollLeft >= maxScrollLeft) {
-          setScrollDirection(-1);
-        } else if (scrollDirection === -1 && element.scrollLeft === 0) {
-          setScrollDirection(1);
-        }
-
-        element.scrollBy({
-          top: 0,
-          left: scrollDirection,
-        });
-      }
-    };
-
-    const interval = setInterval(() => {
-      autoScroll();
-    }, 50);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [scrollDirection]);
-
   return (
-    <div id="services">
-      <h1 className="mb-12 text-center text-3xl font-bold text-gray-900 dark:text-white">
+    <div id="services" className="pb-10">
+      <h1 className="mt-10 text-center text-3xl font-bold text-gray-900 dark:text-gray-100 sm:mt-16 lg:mt-20">
         Contamos con amplio catalogo de servicios
       </h1>
-
-      <div className="grid grid-cols-3 gap-4"></div>
-
-      <div className="relative flex gap-4 overflow-hidden">
-        <div className="flex min-w-full shrink-0 animate-marquee items-center justify-around gap-4">
-          {ServicesData.map(
-            (service) =>
-              service.id % 2 === 0 && (
-                <div
-                  key={service.id}
-                  className="inline-block h-48 w-48 max-w-xs overflow-hidden rounded-lg border border-gray-200 bg-white p-4 text-center align-middle shadow-md transition-shadow duration-300 ease-in-out  hover:bg-gray-100 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                >
-                  <p className="text-lg font-normal text-gray-700 dark:text-gray-400">
-                    {service.title.filter((t) => t.locale === locale)[0]?.text}
-                  </p>
+      <div className="mx-auto mt-10 max-w-2xl px-8 sm:mt-14 lg:mt-16 lg:max-w-4xl">
+        <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+          {MainServices.map((service, index) => (
+            <div key={index} className="relative pl-16">
+              <dt className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-100">
+                <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-800 text-gray-100">
+                  {service.icon}
                 </div>
-              )
-          )}
-        </div>
-        <div
-          aria-hidden="true"
-          className="flex min-w-full shrink-0 animate-marquee items-center justify-around gap-4"
-        >
-          {ServicesData.map(
-            (service) =>
-              service.id % 2 === 0 && (
-                <div
-                  key={service.id}
-                  className="inline-block h-48 w-48 max-w-xs overflow-hidden rounded-lg border border-gray-200 bg-white p-4 text-center align-middle shadow-md transition-shadow duration-300 ease-in-out hover:bg-gray-100 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                >
-                  <p className="text-lg font-normal text-gray-700 dark:text-gray-400">
-                    {service.title.filter((t) => t.locale === locale)[0]?.text}
-                  </p>
-                </div>
-              )
-          )}
-        </div>
+                {service.title.filter((t) => t.locale === locale)[0]?.text}
+              </dt>
+              <dd className="mt-2 text-base leading-7 text-gray-600 dark:text-gray-300">
+                {
+                  service.desription?.filter((t) => t.locale === locale)[0]
+                    ?.text
+                }
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
-      <div className="relative mt-6 flex gap-4 overflow-hidden">
-        <div className="flex min-w-full shrink-0 animate-marquee items-center justify-around gap-4 [animation-direction:reverse]">
-          {ServicesData.map(
-            (service) =>
-              service.id % 2 !== 0 && (
-                <div
-                  key={service.id}
-                  className="inline-block h-48 w-48 max-w-xs overflow-hidden rounded-lg border border-gray-200 bg-white p-4 text-center align-middle shadow-md transition-shadow duration-300 ease-in-out  hover:bg-gray-100 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                >
-                  <p className="text-lg font-normal text-gray-700 dark:text-gray-400">
-                    {service.title.filter((t) => t.locale === locale)[0]?.text}
-                  </p>
-                </div>
-              )
-          )}
-        </div>
-        <div
-          aria-hidden="true"
-          className="flex min-w-full shrink-0 animate-marquee items-center justify-around gap-4 [animation-direction:reverse]"
-        >
-          {ServicesData.map(
-            (service) =>
-              service.id % 2 !== 0 && (
-                <div
-                  key={service.id}
-                  className="inline-block h-48 w-48 max-w-xs overflow-hidden rounded-lg border border-gray-200 bg-white p-4 text-center align-middle shadow-md transition-shadow duration-300 ease-in-out hover:bg-gray-100 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-                >
-                  <p className="text-lg font-normal text-gray-700 dark:text-gray-400">
-                    {service.title.filter((t) => t.locale === locale)[0]?.text}
-                  </p>
-                </div>
-              )
-          )}
-        </div>
+      <h2 className="mt-10 text-center text-2xl font-bold text-gray-900 dark:text-gray-100 sm:mt-16 lg:mt-20">
+        Otros servicios
+      </h2>
+      <div className="mx-auto mt-6 flex max-w-2xl justify-center pb-10 sm:mt-8 lg:mt-10 lg:max-w-4xl">
+        <dl className="grid max-w-xl grid-cols-2 gap-x-8 gap-y-4 align-middle lg:max-w-none lg:grid-cols-3">
+          {OtherServices.map((service, index) => (
+            <div key={index} className="relative">
+              <dt className="h-full w-full rounded-lg border border-slate-400/10 bg-slate-200/30 p-4 text-sm font-normal leading-7 text-gray-600 dark:bg-slate-900/20 dark:text-gray-300">
+                {service.title.filter((t) => t.locale === locale)[0]?.text}
+              </dt>
+            </div>
+          ))}
+        </dl>
       </div>
     </div>
   );
