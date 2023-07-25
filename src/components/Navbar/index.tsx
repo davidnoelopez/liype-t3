@@ -6,6 +6,7 @@ import { Dialog } from "@headlessui/react";
 import { useRouter } from "next/router";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { DefaultData } from "~/types";
+import { useThemeState } from "../ThemeStateProvider";
 
 const navigation = [
   { name: "Servicios", href: "#services" },
@@ -21,16 +22,7 @@ interface Props {
 const index = ({ defaultData }: Props) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { locale } = useRouter();
-  const [mode, setMode] = useState("");
-
-  useEffect(() => {
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", (event) => {
-        const colorScheme = event.matches ? "dark" : "light";
-        setMode(colorScheme);
-      });
-  }, []);
+  const { theme } = useThemeState();
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -48,7 +40,7 @@ const index = ({ defaultData }: Props) => {
             <span className="sr-only">Licencias y Permisos</span>
             <Image
               src={
-                mode === "dark"
+                theme === "dark"
                   ? "/assets/logoLIYPE_light.png"
                   : "/assets/logoLIYPE_dark.png"
               }

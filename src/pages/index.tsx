@@ -6,7 +6,6 @@ import Navbar from "../components/Navbar";
 function Home() {
   return (
     <main className="h-full">
-      <Navbar defaultData={defaultData as DefaultData} />
       <Hero defaultData={defaultData as DefaultData} />
     </main>
   );

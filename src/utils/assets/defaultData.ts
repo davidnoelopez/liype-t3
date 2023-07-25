@@ -64,3 +64,12 @@ export const defaultData: DefaultData = {
     },
   ],
 };
+
+export const metaTags = {
+  title: "Licencias y Permisos",
+  description:
+    "Somos el grupo de gestores de trámites y permisos más confiable y veloz en México. Contamos con más de 30 años de experiencia. Obtén tus permisos de manera ágil, segura y sin complicaciones. Lo tramitamos por ti.",
+  image:
+    "https://static.wixstatic.com/media/e10952_6268c4e1563d48c9b3324dff06f93ace~mv2.png/v1/fill/w_240,h_76,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/logoblancoR.png",
+  url: "https://licenciasypermisos.mx",
+};
