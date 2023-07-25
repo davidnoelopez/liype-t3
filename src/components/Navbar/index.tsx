@@ -11,7 +11,7 @@ import { useThemeState } from "../ThemeStateProvider";
 const navigation = [
   { name: "Servicios", href: "#services" },
   { name: "Gestionamos", href: "#gestionamos" },
-  { name: "Clientes", href: "#clientes" },
+  { name: "Clientes", href: "#clients" },
   { name: "Contacto", href: "/contact" },
 ];
 
@@ -32,7 +32,7 @@ const index = ({ defaultData }: Props) => {
   return (
     <header className="fixed inset-x-0 top-0 z-50 w-full">
       <nav
-        className="flex items-center justify-between p-6 md:px-8"
+        className="flex items-center justify-between bg-slate-100/50 px-6 backdrop-blur-lg dark:bg-slate-900/50 md:px-8"
         aria-label="Global"
       >
         <div className="flex md:flex-1">
