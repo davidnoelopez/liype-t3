@@ -70,6 +70,6 @@ export const metaTags = {
   description:
     "Somos el grupo de gestores de trámites y permisos más confiable y veloz en México. Contamos con más de 30 años de experiencia. Obtén tus permisos de manera ágil, segura y sin complicaciones. Lo tramitamos por ti.",
   image:
-    "https://liype-t3.vercel.app/_next/image?url=%2Fassets%2FlogoLIYPE_light.png",
+    "https://liype-t3.vercel.app/_next/image?url=%2Fassets%2FlogoLIYPE_light.png&w=1080&q=100",
   url: "https://licenciasypermisos.mx",
 };
