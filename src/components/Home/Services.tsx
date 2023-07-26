@@ -29,11 +29,17 @@ const MainServices: Service[] = [
     desription: [
       {
         locale: "es-MX",
-        text: "Obtención y gestoria de licencia de venta de alcohol.",
+        text:
+          "Obtén tu licencia de alcoholes " +
+          new Date().getFullYear() +
+          " para tu restaurante, bar o expendio.",
       },
       {
         locale: "en-US",
-        text: "Obtaining and management of alcohol sales license.",
+        text:
+          "Obtain your alcohol license in " +
+          new Date().getFullYear() +
+          " for your restaurant, bar, or liquor store.",
       },
     ],
     icon: <PiBeerBottleFill className="h-6 w-6" />,
@@ -53,11 +59,17 @@ const MainServices: Service[] = [
     desription: [
       {
         locale: "es-MX",
-        text: "Obtención y gestoria de licencia de uso comercial.",
+        text:
+          "Obtén tu licencia de uso comercial " +
+          new Date().getFullYear() +
+          " ópera en la regularidad elevando el valor de tu propiedad.",
       },
       {
         locale: "en-US",
-        text: "Obtaining and management of commercial use license.",
+        text:
+          "Get your commercial usage license in " +
+          new Date().getFullYear() +
+          " and operate with compliance, increasing the value of your property.",
       },
     ],
     icon: <BiStore className="h-6 w-6" />,
@@ -77,11 +89,11 @@ const MainServices: Service[] = [
     desription: [
       {
         locale: "es-MX",
-        text: "Obtención y gestoria de licencia sanitaria.",
+        text: "Obtén tu licencia sanitaria y ópera tu consultorio médico, clínica y hospital con todos los lineamientos de COFEPRIS.",
       },
       {
         locale: "en-US",
-        text: "Obtaining and management of health license.",
+        text: "Get your health license and operate your medical office, clinic, and hospital with all COFEPRIS guidelines.",
       },
     ],
     icon: <MdHealthAndSafety className="h-6 w-6" />,
@@ -101,11 +113,11 @@ const MainServices: Service[] = [
     desription: [
       {
         locale: "es-MX",
-        text: "Gestoria de trámites gubernamentales.",
+        text: "Gestionamos todos tus trámites gubernamentales municipales, estatales y federales.",
       },
       {
         locale: "en-US",
-        text: "Government procedures management.",
+        text: "We handle all your municipal, state, and federal government procedures.",
       },
     ],
     icon: <RiGovernmentLine className="h-6 w-6" />,
