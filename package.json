@@ -24,6 +24,7 @@
     "flag-icons": "^6.6.6",
     "flowbite": "^1.6.6",
     "flowbite-react": "^0.4.7",
+    "framer-motion": "^10.13.1",
     "next": "^13.4.1",
     "next-seo": "^6.1.0",
     "react": "18.2.0",

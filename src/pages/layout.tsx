@@ -8,7 +8,7 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div className="h-full bg-gray-100 dark:bg-slate-900">
+    <div className="h-full scroll-smooth bg-gray-100 dark:bg-slate-900">
       <div className="relative isolate">
         <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
           <svg

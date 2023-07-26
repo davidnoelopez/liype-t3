@@ -1,3 +1,4 @@
+import { motion, Variants } from "framer-motion";
 import { useRouter } from "next/router";
 import { type ReactElement } from "react";
 import { BiStore } from "react-icons/bi";
@@ -246,16 +247,56 @@ const OtherServices: Service[] = [
 
 const Services = () => {
   const { locale } = useRouter();
+  const enterLeft: Variants = {
+    hide: {
+      opacity: 0,
+      x: -200,
+    },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: 0,
+        type: "spring",
+        duration: 1,
+        damping: 20,
+      },
+    },
+  };
+
+  const enterRight: Variants = {
+    hide: {
+      opacity: 0,
+      x: 200,
+    },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        delay: 0,
+        type: "spring",
+        duration: 1,
+        damping: 20,
+      },
+    },
+  };
 
   return (
-    <div id="services" className="pb-10">
+    <div id="services" className="pb-10 pt-8 md:pt-12">
       <h1 className="mt-10 text-center text-3xl font-bold text-gray-900 dark:text-gray-100 sm:mt-16 lg:mt-20">
         Contamos con amplio catalogo de servicios
       </h1>
       <div className="mx-auto mt-10 max-w-2xl px-8 sm:mt-14 lg:mt-16 lg:max-w-4xl">
         <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
           {MainServices.map((service, index) => (
-            <div key={index} className="relative pl-16">
+            <motion.div
+              key={index}
+              className="relative pl-16"
+              initial="hide"
+              whileInView="show"
+              exit="hide"
+              variants={index % 2 === 0 ? enterLeft : enterRight}
+            >
               <dt className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-100">
                 <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-800 text-gray-100">
                   {service.icon}
@@ -268,7 +309,7 @@ const Services = () => {
                     ?.text
                 }
               </dd>
-            </div>
+            </motion.div>
           ))}
         </dl>
       </div>
@@ -279,9 +320,15 @@ const Services = () => {
         <dl className="grid max-w-xl grid-cols-2 gap-x-8 gap-y-4 align-middle lg:max-w-none lg:grid-cols-3">
           {OtherServices.map((service, index) => (
             <div key={index} className="relative">
-              <dt className="h-full w-full rounded-lg border border-slate-400/10 bg-slate-200/30 p-4 text-sm font-normal leading-7 text-gray-600 dark:bg-slate-900/20 dark:text-gray-300">
+              <motion.dt
+                className="h-full w-full rounded-lg border border-slate-400/10 bg-slate-200/30 p-4 text-sm font-normal leading-7 text-gray-600 dark:bg-slate-900/20 dark:text-gray-300"
+                initial="hide"
+                whileInView="show"
+                exit="hide"
+                variants={index % 2 === 0 ? enterLeft : enterRight}
+              >
                 {service.title.filter((t) => t.locale === locale)[0]?.text}
-              </dt>
+              </motion.dt>
             </div>
           ))}
         </dl>

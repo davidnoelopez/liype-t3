@@ -10,7 +10,6 @@ import { useThemeState } from "../ThemeStateProvider";
 
 const navigation = [
   { name: "Servicios", href: "#services" },
-  { name: "Gestionamos", href: "#gestionamos" },
   { name: "Clientes", href: "#clients" },
   { name: "Contacto", href: "/contact" },
 ];
@@ -23,6 +22,10 @@ const index = ({ defaultData }: Props) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { locale } = useRouter();
   const { theme } = useThemeState();
+  const logo =
+    theme === "dark"
+      ? "/assets/logoLIYPE_light.png"
+      : "/assets/logoLIYPE_dark.png";
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -39,11 +42,7 @@ const index = ({ defaultData }: Props) => {
           <Link href="/" className="m-1.5 h-auto w-36 p-1.5">
             <span className="sr-only">Licencias y Permisos</span>
             <Image
-              src={
-                theme === "dark"
-                  ? "/assets/logoLIYPE_light.png"
-                  : "/assets/logoLIYPE_dark.png"
-              }
+              src={logo}
               alt="Licencias y Permisos"
               width={132}
               height={40}
@@ -77,7 +76,6 @@ const index = ({ defaultData }: Props) => {
               key={item.name}
               href={item.href}
               className="rounded-md px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 dark:text-gray-200 dark:hover:bg-gray-900 dark:hover:bg-opacity-10 dark:hover:text-gray-100"
-              scroll={true}
             >
               {item.name}
             </Link>
@@ -99,7 +97,7 @@ const index = ({ defaultData }: Props) => {
             <Link href="/" className="m-1.5 h-auto w-36 p-1.5">
               <span className="sr-only">Licencias y Permisos</span>
               <Image
-                src="/assets/logoLIYPE.png"
+                src={logo}
                 alt="Licencias y Permisos"
                 width={132}
                 height={40}

@@ -1,8 +1,7 @@
-import { useState } from "react";
 import { useRouter } from "next/router";
 import { DefaultData } from "~/types";
-import Services from "../Home/Services";
 import Link from "next/link";
+import { Variants, motion } from "framer-motion";
 
 interface Props {
   defaultData: DefaultData;
@@ -20,10 +19,33 @@ export default function Hero({ defaultData }: Props) {
     (t) => t.locale === locale
   )[0]?.text;
 
+  const introHeaderVariants: Variants = {
+    hide: {
+      opacity: 0,
+      y: -200,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 0,
+        type: "spring",
+        duration: 1,
+        damping: 20,
+      },
+    },
+  };
+
   return (
-    <div className="mx-auto max-w-2xl py-32 sm:py-48 md:py-48">
+    <motion.header
+      className="mx-auto max-w-2xl py-32 pb-24 sm:py-48 md:py-48 md:pb-36"
+      initial="hide"
+      whileInView="show"
+      exit="hide"
+      variants={introHeaderVariants}
+    >
       <div className="text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-6xl ">
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-6xl">
           {brandName}
         </h1>
         <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-4xl">
@@ -48,6 +70,6 @@ export default function Hero({ defaultData }: Props) {
           </Link>
         </div>
       </div>
-    </div>
+    </motion.header>
   );
 }
