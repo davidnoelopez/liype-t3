@@ -30,7 +30,7 @@ export const defaultData: DefaultData = {
     },
     {
       locale: "en-US",
-      text: "The best Permits Manager in Mexico.",
+      text: "The Best Permits Manager in Mexico.",
     },
   ],
   serviceDescription: [
