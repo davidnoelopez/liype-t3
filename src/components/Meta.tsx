@@ -2,13 +2,14 @@ import { NextSeo } from "next-seo";
 import { metaTags } from "~/utils/assets/defaultData";
 
 const Meta = () => {
-  const { title, description, url, image } = metaTags;
+  const { siteName, title, description, url, image } = metaTags;
 
   return (
     <NextSeo
       title={title}
       description={description}
       canonical={url}
+      themeColor="#16274E"
       openGraph={{
         url,
         title,
@@ -21,6 +22,8 @@ const Meta = () => {
             alt: title,
           },
         ],
+        locale: "es_MX",
+        site_name: siteName,
       }}
     />
   );
