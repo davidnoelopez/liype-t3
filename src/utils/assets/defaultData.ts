@@ -69,7 +69,7 @@ export const metaTags = {
   siteName: "Licencias y Permisos",
   title: "Licencias y Permisos - Gestores de trámites",
   description:
-    "Somos el grupo de gestores de trámites y permisos más confiable y veloz en México.\nObtén tus permisos de manera ágil, segura y sin complicaciones.",
+    "Somos el grupo de gestores de trámites y permisos más confiable y veloz en México.\nObtén tus permisos y licencias de manera ágil, segura y sin complicaciones.",
   image:
     "https://liype-t3.vercel.app/_next/image?url=%2Fassets%2FlogoLIYPE_light.png&w=1080&q=100",
   url: "https://licenciasypermisos.mx",
