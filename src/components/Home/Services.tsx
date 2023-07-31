@@ -346,15 +346,13 @@ const Services = () => {
 
   return (
     <section id="services" className="pb-10 pt-8 md:pt-12">
-      <div className="flex justify-start sm:justify-center">
-        <Title
-          title={
-            titles
-              .filter((t) => t.name === "services")[0]
-              ?.text.filter((t) => t.locale === locale)[0]?.text as string
-          }
-        />
-      </div>
+      <Title
+        title={
+          titles
+            .filter((t) => t.name === "services")[0]
+            ?.text.filter((t) => t.locale === locale)[0]?.text as string
+        }
+      />
       <div className="mx-auto mt-10 max-w-2xl overflow-hidden sm:mt-14 lg:mt-16 lg:max-w-4xl">
         <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 px-8 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
           {MainServices.map((service, index) => (
@@ -382,15 +380,13 @@ const Services = () => {
           ))}
         </dl>
       </div>
-      <div className="flex justify-start sm:justify-center">
-        <Title
-          title={
-            titles
-              .filter((t) => t.name === "otherServices")[0]
-              ?.text.filter((t) => t.locale === locale)[0]?.text as string
-          }
-        />
-      </div>
+      <Title
+        title={
+          titles
+            .filter((t) => t.name === "otherServices")[0]
+            ?.text.filter((t) => t.locale === locale)[0]?.text as string
+        }
+      />
       <div className="mx-auto mt-6 flex max-w-2xl justify-center overflow-hidden pb-10 sm:mt-8 lg:mt-10 lg:max-w-4xl">
         <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-4 px-10 align-middle sm:grid-cols-2 sm:px-4 lg:max-w-none lg:grid-cols-3">
           {OtherServices.map((service, index) => (
