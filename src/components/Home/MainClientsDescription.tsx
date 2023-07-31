@@ -127,13 +127,14 @@ const MainClientsDescription = () => {
     <div className="container mx-auto py-10">
       <div className="lg:flex lg:items-center">
         <div className="w-full space-y-12 lg:w-1/2 ">
-          <Title
-            title={
-              TitleText.filter((t) => t.locale === locale)[0]?.text as string
-            }
-            align="start"
-          />
-
+          <div className="md:pl-8">
+            <Title
+              title={
+                TitleText.filter((t) => t.locale === locale)[0]?.text as string
+              }
+              align="start"
+            />
+          </div>
           {ClientsGeneralData.map((client, index) => (
             <div className="md:-mx-4 md:flex md:items-start" key={index}>
               <span className="inline-block rounded-xl bg-blue-200 p-2 text-blue-800 dark:bg-blue-800 dark:text-white md:mx-4">
@@ -166,8 +167,6 @@ const MainClientsDescription = () => {
           />
         </div>
       </div>
-
-      {/* <hr className="mt-12 border-gray-300 dark:border-gray-700" /> */}
     </div>
   );
 };
