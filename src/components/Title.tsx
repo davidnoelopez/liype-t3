@@ -12,7 +12,7 @@ const Title = ({ title }: Props) => {
 
   return (
     <div className="mx-8 flex w-fit flex-col">
-      <h2 className="mt-10 text-center text-3xl font-bold text-gray-900 dark:text-gray-100 sm:mt-16 lg:mt-20">
+      <h2 className="mt-10 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:mt-16 lg:mt-20">
         {title}
       </h2>
       <div className="mt-5 flex">
