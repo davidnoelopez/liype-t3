@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-type Props = { title: string; align?: "start" | "center" | "end" };
+type Props = { title: string; align?: "start" | "center" };
 
 const Title = ({ title, align }: Props) => {
   const lineVariants = {
@@ -11,7 +11,13 @@ const Title = ({ title, align }: Props) => {
   };
 
   return (
-    <div className={`flex justify-start sm:justify-${align}`}>
+    <div
+      className={
+        align === "start"
+          ? "flex justify-start"
+          : "flex justify-start sm:justify-center"
+      }
+    >
       <div className="mx-8 flex w-fit flex-col md:mx-0">
         <h2 className="mt-10 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:mt-16 lg:mt-20">
           {title}
@@ -45,7 +51,3 @@ const Title = ({ title, align }: Props) => {
 };
 
 export default Title;
-
-Title.defaultProps = {
-  align: "center",
-};
