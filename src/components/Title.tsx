@@ -12,7 +12,7 @@ const Title = ({ title, align }: Props) => {
 
   return (
     <div className={"flex justify-start" + " sm:justify-" + align}>
-      <div className="mx-8 flex w-fit flex-col">
+      <div className="mx-8 flex w-fit flex-col md:mx-0">
         <h2 className="mt-10 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:mt-16 lg:mt-20">
           {title}
         </h2>
