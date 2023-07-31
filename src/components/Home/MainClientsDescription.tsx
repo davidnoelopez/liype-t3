@@ -124,7 +124,7 @@ const MainClientsDescription = () => {
   const { locale } = useRouter();
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto pb-10">
       <div className="lg:flex lg:items-center">
         <div className="w-full space-y-12 lg:w-1/2 ">
           <div className="md:pl-8">

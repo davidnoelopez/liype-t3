@@ -1,6 +1,6 @@
-import { motion, Variants } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import { useRouter } from "next/router";
-import { type ReactElement } from "react";
+import { useState, type ReactElement, useRef } from "react";
 import { BiStore } from "react-icons/bi";
 import { MdHealthAndSafety } from "react-icons/md";
 import { PiBeerBottleFill } from "react-icons/pi";
@@ -291,6 +291,44 @@ const OtherServices: Service[] = [
   },
 ];
 
+const OtherServicesTop = (service: Service) => {
+  const { locale } = useRouter();
+  const enterTop: Variants = {
+    hide: {
+      opacity: 0,
+      y: 200,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 0,
+        type: "spring",
+        duration: 1,
+        damping: 20,
+      },
+    },
+  };
+  const ref = useRef(null);
+  const inView = useInView(ref, { margin: "300px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      className="relative hidden lg:block"
+      initial="hide"
+      whileInView={inView ? "show" : "hide"}
+      exit="hide"
+      viewport={{ once: true }}
+      variants={enterTop}
+    >
+      <dt className="flex h-full w-full cursor-default items-center rounded-lg border border-slate-400/30 bg-slate-200/50 p-4 text-center text-lg font-medium leading-6 text-gray-600 dark:border-slate-400/20 dark:bg-slate-900/20 dark:text-gray-300">
+        {service.title.filter((t) => t.locale === locale)[0]?.text}
+      </dt>
+    </motion.div>
+  );
+};
+
 const Services = () => {
   const { locale } = useRouter();
   const enterLeft: Variants = {
@@ -327,25 +365,8 @@ const Services = () => {
     },
   };
 
-  const enterTop: Variants = {
-    hide: {
-      opacity: 0,
-      y: 200,
-    },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0,
-        type: "spring",
-        duration: 1,
-        damping: 20,
-      },
-    },
-  };
-
   return (
-    <section id="services" className="pb-10 pt-8 md:pt-12">
+    <section id="services" className="pt-8 md:pt-12">
       <Title
         title={
           titles
@@ -388,7 +409,7 @@ const Services = () => {
         }
       />
       <div className="mx-auto mt-6 flex max-w-2xl justify-center overflow-hidden pb-10 sm:mt-8 lg:mt-10 lg:max-w-4xl">
-        <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-4 px-10 align-middle sm:grid-cols-2 sm:px-4 lg:max-w-none lg:grid-cols-3">
+        <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-4 px-10 pb-10 align-middle sm:grid-cols-2 sm:px-4 lg:max-w-none lg:grid-cols-3">
           {OtherServices.map((service, index) => (
             <>
               <motion.div
@@ -403,18 +424,7 @@ const Services = () => {
                   {service.title.filter((t) => t.locale === locale)[0]?.text}
                 </dt>
               </motion.div>
-              <motion.div
-                key={"lg" + index}
-                className="relative hidden lg:block"
-                initial="hide"
-                whileInView="show"
-                exit="hide"
-                variants={enterTop}
-              >
-                <dt className="flex h-full w-full cursor-default items-center rounded-lg border border-slate-400/30 bg-slate-200/50 p-4 text-center text-lg font-medium leading-6 text-gray-600 dark:border-slate-400/20 dark:bg-slate-900/20 dark:text-gray-300">
-                  {service.title.filter((t) => t.locale === locale)[0]?.text}
-                </dt>
-              </motion.div>
+              <OtherServicesTop {...service} />
             </>
           ))}
         </dl>
