@@ -1,8 +1,11 @@
 import { NextSeo } from "next-seo";
-import { metaTags } from "~/utils/assets/defaultData";
+import { useRouter } from "next/router";
+import { metaTagsMX, metaTagsUS } from "~/utils/assets/defaultData";
 
 const Meta = () => {
-  const { siteName, title, description, url, image } = metaTags;
+  const { locale } = useRouter();
+  const { siteName, title, description, url, image } =
+    locale === "es-MX" ? metaTagsMX : metaTagsUS;
 
   return (
     <NextSeo
