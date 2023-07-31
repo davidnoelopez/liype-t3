@@ -378,7 +378,7 @@ const Services = () => {
         <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 px-8 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
           {MainServices.map((service, index) => (
             <motion.div
-              key={index}
+              key={"main-" + index}
               className="relative pl-16"
               initial="hide"
               whileInView="show"
@@ -409,23 +409,26 @@ const Services = () => {
         }
       />
       <div className="mx-auto mt-6 flex max-w-2xl justify-center overflow-hidden pb-10 sm:mt-8 lg:mt-10 lg:max-w-4xl">
-        <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-4 px-10 pb-10 align-middle sm:grid-cols-2 sm:px-4 lg:max-w-none lg:grid-cols-3">
+        <dl
+          key="other-services"
+          className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-4 px-10 pb-10 align-middle sm:grid-cols-2 sm:px-4 lg:max-w-none lg:grid-cols-3"
+        >
           {OtherServices.map((service, index) => (
-            <>
-              <motion.div
-                key={"sm" + index}
-                className="relative lg:hidden"
-                initial="hide"
-                whileInView="show"
-                exit="hide"
-                variants={index % 2 === 0 ? enterLeft : enterRight}
-              >
-                <dt className="flex h-full w-full cursor-default items-center rounded-lg border border-slate-400/30 bg-slate-200/50 p-4 text-center text-lg font-medium leading-6 text-gray-600 dark:border-slate-400/20 dark:bg-slate-900/20 dark:text-gray-300">
-                  {service.title.filter((t) => t.locale === locale)[0]?.text}
-                </dt>
-              </motion.div>
-              <OtherServicesTop {...service} />
-            </>
+            <motion.div
+              key={`sm-${index}`}
+              className="relative lg:hidden"
+              initial="hide"
+              whileInView="show"
+              exit="hide"
+              variants={index % 2 === 0 ? enterLeft : enterRight}
+            >
+              <dt className="flex h-full w-full cursor-default items-center rounded-lg border border-slate-400/30 bg-slate-200/50 p-4 text-center text-lg font-medium leading-6 text-gray-600 dark:border-slate-400/20 dark:bg-slate-900/20 dark:text-gray-300">
+                {service.title.filter((t) => t.locale === locale)[0]?.text}
+              </dt>
+            </motion.div>
+          ))}
+          {OtherServices.map((service, index) => (
+            <OtherServicesTop key={`lg-${index}`} {...service} />
           ))}
         </dl>
       </div>
