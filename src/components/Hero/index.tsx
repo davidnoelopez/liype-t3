@@ -37,30 +37,31 @@ export default function Hero({ defaultData }: Props) {
   };
 
   return (
-    <motion.header
-      className="mx-auto max-w-2xl py-32 pb-24 sm:py-48 md:py-48 md:pb-36"
+    <motion.section
+      className="mx-auto max-w-2xl px-8 py-32 pb-24 sm:py-48 md:py-48 md:pb-36"
       initial="hide"
       whileInView="show"
       exit="hide"
       variants={introHeaderVariants}
     >
       <div className="text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-6xl">
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-6xl">
           {brandName}
         </h1>
-        <div className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-4xl">
+        <div className="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-4xl">
           {title}
         </div>
-        <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-500">
+        <p className="mt-6 text-base leading-8 text-gray-600 dark:text-gray-500 sm:text-lg">
           {serviceDescription}
         </p>
-        <div className="mt-8 flex flex-col items-center justify-center space-y-4 px-28">
-          <p className="text-lg font-bold leading-8 text-gray-600 dark:text-gray-500">
+        {/* <div className="mx-auto my-8 w-3/4 border-b border-gray-400/30 dark:border-gray-700" /> */}
+        <div className="mt-10 flex flex-col items-center justify-center space-y-4 sm:px-24">
+          <p className="text-xl font-bold leading-8 text-black dark:text-white">
             {callToAction}
           </p>
           <Link
             href="/contact"
-            className="w-fit rounded-md bg-blue-800 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            className="text-md w-fit rounded-md bg-blue-800 px-3.5 py-2.5 font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           >
             {
               defaultData.contactButtonText.filter(
@@ -70,6 +71,6 @@ export default function Hero({ defaultData }: Props) {
           </Link>
         </div>
       </div>
-    </motion.header>
+    </motion.section>
   );
 }
