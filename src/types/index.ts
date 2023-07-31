@@ -5,7 +5,7 @@ export interface Language {
 }
 
 export interface LocalizedText {
-  locale: string;
+  locale: "es-MX" | "en-US";
   text: string;
 }
 

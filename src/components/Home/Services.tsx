@@ -6,6 +6,7 @@ import { MdHealthAndSafety } from "react-icons/md";
 import { PiBeerBottleFill } from "react-icons/pi";
 import { RiGovernmentLine } from "react-icons/ri";
 import { LocalizedText } from "~/types";
+import Title from "../Title";
 
 interface Service {
   id: number;
@@ -13,6 +14,39 @@ interface Service {
   desription?: LocalizedText[];
   icon?: ReactElement;
 }
+
+const titles: {
+  name: string;
+  text: LocalizedText[];
+}[] = [
+  {
+    name: "services",
+    text: [
+      {
+        locale: "es-MX",
+        text: "Contamos con amplio catalogo de servicios",
+      },
+      {
+        locale: "en-US",
+        text: "We have a wide catalog of services",
+      },
+    ],
+  },
+  {
+    name: "otherServices",
+    text: [
+      {
+        locale: "es-MX",
+        text: "Otros servicios",
+      },
+      {
+        locale: "en-US",
+        text: "Other services",
+      },
+    ],
+  },
+];
+
 const MainServices: Service[] = [
   {
     id: 1,
@@ -191,7 +225,7 @@ const OtherServices: Service[] = [
     ],
   },
   {
-    id: 7,
+    id: 6,
     title: [
       {
         locale: "es-MX",
@@ -204,7 +238,7 @@ const OtherServices: Service[] = [
     ],
   },
   {
-    id: 8,
+    id: 7,
     title: [
       {
         locale: "es-MX",
@@ -217,7 +251,7 @@ const OtherServices: Service[] = [
     ],
   },
   {
-    id: 9,
+    id: 8,
     title: [
       {
         locale: "es-MX",
@@ -230,7 +264,7 @@ const OtherServices: Service[] = [
     ],
   },
   {
-    id: 10,
+    id: 9,
     title: [
       {
         locale: "es-MX",
@@ -243,7 +277,7 @@ const OtherServices: Service[] = [
     ],
   },
   {
-    id: 11,
+    id: 10,
     title: [
       {
         locale: "es-MX",
@@ -311,12 +345,18 @@ const Services = () => {
   };
 
   return (
-    <div id="services" className="pb-10 pt-8 md:pt-12">
-      <h2 className="mt-10 text-center text-3xl font-bold text-gray-900 dark:text-gray-100 sm:mt-16 lg:mt-20">
-        Contamos con amplio catalogo de servicios
-      </h2>
-      <div className="mx-auto mt-10 max-w-2xl px-8 sm:mt-14 lg:mt-16 lg:max-w-4xl">
-        <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+    <section id="services" className="pb-10 pt-8 md:pt-12">
+      <div className="flex justify-start sm:justify-center">
+        <Title
+          title={
+            titles
+              .filter((t) => t.name === "services")[0]
+              ?.text.filter((t) => t.locale === locale)[0]?.text as string
+          }
+        />
+      </div>
+      <div className="mx-auto mt-10 max-w-2xl overflow-hidden sm:mt-14 lg:mt-16 lg:max-w-4xl">
+        <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 px-8 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
           {MainServices.map((service, index) => (
             <motion.div
               key={index}
@@ -326,13 +366,13 @@ const Services = () => {
               exit="hide"
               variants={index % 2 === 0 ? enterLeft : enterRight}
             >
-              <dt className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-100">
+              <dt className="text-xl font-semibold leading-7 text-gray-900 dark:text-gray-100 sm:text-2xl">
                 <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-800 text-gray-100">
                   {service.icon}
                 </div>
                 {service.title.filter((t) => t.locale === locale)[0]?.text}
               </dt>
-              <dd className="mt-2 text-base leading-7 text-gray-600 dark:text-gray-300">
+              <dd className="mt-2 text-lg leading-7 text-gray-600 dark:text-gray-300">
                 {
                   service.desription?.filter((t) => t.locale === locale)[0]
                     ?.text
@@ -342,11 +382,17 @@ const Services = () => {
           ))}
         </dl>
       </div>
-      <h2 className="mt-10 text-center text-2xl font-bold text-gray-900 dark:text-gray-100 sm:mt-16 lg:mt-20">
-        Otros servicios
-      </h2>
-      <div className="mx-auto mt-6 flex max-w-2xl justify-center pb-10 sm:mt-8 lg:mt-10 lg:max-w-4xl">
-        <dl className="grid max-w-xl grid-cols-2 gap-x-8 gap-y-4 align-middle lg:max-w-none lg:grid-cols-3">
+      <div className="flex justify-start sm:justify-center">
+        <Title
+          title={
+            titles
+              .filter((t) => t.name === "otherServices")[0]
+              ?.text.filter((t) => t.locale === locale)[0]?.text as string
+          }
+        />
+      </div>
+      <div className="mx-auto mt-6 flex max-w-2xl justify-center overflow-hidden pb-10 sm:mt-8 lg:mt-10 lg:max-w-4xl">
+        <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-4 px-10 align-middle sm:grid-cols-2 sm:px-4 lg:max-w-none lg:grid-cols-3">
           {OtherServices.map((service, index) => (
             <>
               <motion.div
@@ -357,7 +403,7 @@ const Services = () => {
                 exit="hide"
                 variants={index % 2 === 0 ? enterLeft : enterRight}
               >
-                <dt className="h-full w-full rounded-lg border border-slate-400/10 bg-slate-200/30 p-4 text-sm font-normal leading-6 text-gray-600 dark:bg-slate-900/20 dark:text-gray-300">
+                <dt className="flex h-full w-full cursor-default items-center rounded-lg border border-slate-400/30 bg-slate-200/50 p-4 text-center text-lg font-normal leading-6 text-gray-600 dark:border-slate-400/20 dark:bg-slate-900/20 dark:text-gray-300">
                   {service.title.filter((t) => t.locale === locale)[0]?.text}
                 </dt>
               </motion.div>
@@ -369,7 +415,7 @@ const Services = () => {
                 exit="hide"
                 variants={enterTop}
               >
-                <dt className="h-full w-full rounded-lg border border-slate-400/10 bg-slate-200/30 p-4 text-sm font-normal leading-6 text-gray-600 dark:bg-slate-900/20 dark:text-gray-300">
+                <dt className="flex h-full w-full cursor-default items-center rounded-lg border border-slate-400/30 bg-slate-200/50 p-4 text-center text-lg font-normal leading-6 text-gray-600 dark:border-slate-400/20 dark:bg-slate-900/20 dark:text-gray-300">
                   {service.title.filter((t) => t.locale === locale)[0]?.text}
                 </dt>
               </motion.div>
@@ -377,7 +423,7 @@ const Services = () => {
           ))}
         </dl>
       </div>
-    </div>
+    </section>
   );
 };
 
