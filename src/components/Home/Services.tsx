@@ -392,7 +392,7 @@ const Services = () => {
           {OtherServices.map((service, index) => (
             <>
               <motion.div
-                key={index}
+                key={"sm" + index}
                 className="relative lg:hidden"
                 initial="hide"
                 whileInView="show"
@@ -404,7 +404,7 @@ const Services = () => {
                 </dt>
               </motion.div>
               <motion.div
-                key={index}
+                key={"lg" + index}
                 className="relative hidden lg:block"
                 initial="hide"
                 whileInView="show"
