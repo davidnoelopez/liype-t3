@@ -293,6 +293,23 @@ const Services = () => {
     },
   };
 
+  const enterTop: Variants = {
+    hide: {
+      opacity: 0,
+      y: 200,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 0,
+        type: "spring",
+        duration: 1,
+        damping: 20,
+      },
+    },
+  };
+
   return (
     <div id="services" className="pb-10 pt-8 md:pt-12">
       <h2 className="mt-10 text-center text-3xl font-bold text-gray-900 dark:text-gray-100 sm:mt-16 lg:mt-20">
@@ -331,18 +348,32 @@ const Services = () => {
       <div className="mx-auto mt-6 flex max-w-2xl justify-center pb-10 sm:mt-8 lg:mt-10 lg:max-w-4xl">
         <dl className="grid max-w-xl grid-cols-2 gap-x-8 gap-y-4 align-middle lg:max-w-none lg:grid-cols-3">
           {OtherServices.map((service, index) => (
-            <motion.div
-              key={index}
-              className="relative"
-              initial="hide"
-              whileInView="show"
-              exit="hide"
-              variants={index % 2 === 0 ? enterLeft : enterRight}
-            >
-              <dt className="h-full w-full rounded-lg border border-slate-400/10 bg-slate-200/30 p-4 text-sm font-normal leading-6 text-gray-600 dark:bg-slate-900/20 dark:text-gray-300">
-                {service.title.filter((t) => t.locale === locale)[0]?.text}
-              </dt>
-            </motion.div>
+            <>
+              <motion.div
+                key={index}
+                className="relative lg:hidden"
+                initial="hide"
+                whileInView="show"
+                exit="hide"
+                variants={index % 2 === 0 ? enterLeft : enterRight}
+              >
+                <dt className="h-full w-full rounded-lg border border-slate-400/10 bg-slate-200/30 p-4 text-sm font-normal leading-6 text-gray-600 dark:bg-slate-900/20 dark:text-gray-300">
+                  {service.title.filter((t) => t.locale === locale)[0]?.text}
+                </dt>
+              </motion.div>
+              <motion.div
+                key={index}
+                className="relative hidden lg:block"
+                initial="hide"
+                whileInView="show"
+                exit="hide"
+                variants={enterTop}
+              >
+                <dt className="h-full w-full rounded-lg border border-slate-400/10 bg-slate-200/30 p-4 text-sm font-normal leading-6 text-gray-600 dark:bg-slate-900/20 dark:text-gray-300">
+                  {service.title.filter((t) => t.locale === locale)[0]?.text}
+                </dt>
+              </motion.div>
+            </>
           ))}
         </dl>
       </div>

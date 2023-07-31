@@ -48,9 +48,9 @@ export default function Hero({ defaultData }: Props) {
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-6xl">
           {brandName}
         </h1>
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-4xl">
+        <div className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-4xl">
           {title}
-        </h2>
+        </div>
         <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-500">
           {serviceDescription}
         </p>
