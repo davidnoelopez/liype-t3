@@ -142,9 +142,9 @@ const MainClientsDescription = () => {
               </span>
 
               <div className="mt-4 md:mx-4 md:mt-0">
-                <h1 className="text-2xl font-semibold capitalize text-gray-700 dark:text-white">
+                <h3 className="text-2xl font-semibold capitalize text-gray-700 dark:text-white">
                   {client.title.filter((t) => t.locale === locale)[0]?.text}
-                </h1>
+                </h3>
 
                 <p className="mt-3 text-gray-500 dark:text-gray-300">
                   {
