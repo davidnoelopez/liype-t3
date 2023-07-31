@@ -43,7 +43,12 @@ const index = ({ defaultData }: Props) => {
         aria-label="Global"
       >
         <div className="flex md:flex-1">
-          <Link href="/" className="m-1.5 h-auto w-36 p-1.5">
+          <Link
+            href={pathname !== "/" ? "/" : "#"}
+            className="m-1.5 h-auto w-36 p-1.5"
+            scroll={false}
+            onClick={() => scrollTo({ top: 0, behavior: "smooth" })}
+          >
             <span className="sr-only">Licencias y Permisos</span>
             <Image
               src={logo}
@@ -80,6 +85,7 @@ const index = ({ defaultData }: Props) => {
               key={item.name}
               href={generateUrl(item.href)}
               className="rounded-md px-3 py-2 text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 dark:text-gray-200 dark:hover:bg-gray-900 dark:hover:bg-opacity-10 dark:hover:text-gray-100"
+              scroll={false}
             >
               {item.name}
             </Link>
@@ -125,6 +131,7 @@ const index = ({ defaultData }: Props) => {
                     key={item.name}
                     href={generateUrl(item.href)}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-200 dark:hover:bg-gray-900 dark:hover:bg-opacity-10 dark:hover:text-gray-100"
+                    scroll={false}
                   >
                     {item.name}
                   </Link>
