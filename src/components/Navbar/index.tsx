@@ -97,14 +97,20 @@ const index = ({ defaultData }: Props) => {
       </nav>
       <Dialog
         as="div"
-        className="md:hidden"
+        className="relative z-50 md:hidden"
         open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
       >
-        <div className="fixed inset-0 z-50" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 dark:bg-gray-900 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 min-h-full w-full bg-white px-6 backdrop-blur-lg dark:bg-gray-900/80 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <Link href="/" className="m-1.5 h-auto w-36 p-1.5">
+            <Link
+              href="/"
+              className="m-1.5 h-auto w-36 p-1.5"
+              onClick={() => setMobileMenuOpen(false)}
+              scroll={false}
+            >
               <span className="sr-only">Licencias y Permisos</span>
               <Image
                 src={logo}
@@ -116,7 +122,7 @@ const index = ({ defaultData }: Props) => {
             </Link>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              className="-m-2.5 rounded-md p-2.5 text-gray-700 dark:text-white"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
@@ -125,20 +131,21 @@ const index = ({ defaultData }: Props) => {
           </div>
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
+              <div className="flex flex-col items-end space-y-2 py-6">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
                     href={generateUrl(item.href)}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-200 dark:hover:bg-gray-900 dark:hover:bg-opacity-10 dark:hover:text-gray-100"
+                    onClick={() => setMobileMenuOpen(false)}
                     scroll={false}
                   >
                     {item.name}
                   </Link>
                 ))}
-              </div>
-              <div className="py-6">
-                <LanguageSelector languages={defaultData.languages} />
+                <div className="py-6">
+                  <LanguageSelector languages={defaultData.languages} />
+                </div>
               </div>
             </div>
           </div>
