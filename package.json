@@ -11,7 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.14",
+    "@headlessui/react": "^1.7.16",
     "@heroicons/react": "^2.0.18",
     "@prisma/client": "^4.14.1",
     "@t3-oss/env-nextjs": "^0.2.1",
