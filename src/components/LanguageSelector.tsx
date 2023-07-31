@@ -50,7 +50,7 @@ export const LanguageSelector = ({ languages }: Props) => {
         <Menu as="div" className="relative inline-block text-left">
           <div>
             <Menu.Button
-              className="inline-flex w-36 justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              className="inline-flex w-36 justify-center gap-x-1.5 rounded-md bg-slate-200/60 px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-gray-50/80 dark:bg-slate-700/80 dark:text-white dark:hover:bg-gray-700"
               id={LANGUAGE_SELECTOR_ID}
             >
               <FlagIcon countryCode={selectedLanguage.key} />
@@ -81,7 +81,7 @@ export const LanguageSelector = ({ languages }: Props) => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute z-10 mt-2 w-auto origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="absolute z-10 mt-2 w-auto origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-slate-700/80">
               <div className="">
                 {languages.map((language, index) => {
                   return (
@@ -91,11 +91,9 @@ export const LanguageSelector = ({ languages }: Props) => {
                         locale={language.locale}
                         className={`${
                           selectedLanguage.key === language.key
-                            ? "bg-blue-100 text-gray-900"
+                            ? "bg-blue-100 font-semibold text-gray-900 dark:bg-blue-800 dark:text-white"
                             : "text-gray-700"
-                        } inline-flex w-full items-center px-4 py-2 text-left text-sm hover:bg-gray-100 ${
-                          index % 2 === 0 ? "rounded-r" : "rounded-l"
-                        }`}
+                        } inline-flex w-full items-center rounded-md px-4 py-2 text-left text-sm hover:bg-gray-100 dark:text-white dark:hover:bg-gray-600/80`}
                         role="menuitem"
                       >
                         <FlagIcon countryCode={language.key} />
