@@ -75,7 +75,7 @@ const ClientsMarquee = () => {
                 alt={client.name}
                 width={200}
                 height={200}
-                quality={100}
+                quality={80}
               />
             </div>
           ))}
