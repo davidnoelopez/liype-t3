@@ -24,6 +24,7 @@ const ContactInfo: {
   formSubjectPlaceholder: LocalizedText[];
   formMessage: LocalizedText[];
   formMessagePlaceholder: LocalizedText[];
+  sendMessageButton: LocalizedText[];
 } = {
   title: [
     {
@@ -93,6 +94,16 @@ const ContactInfo: {
     {
       locale: "en-US",
       text: "Briefly describe how we can help your business.",
+    },
+  ],
+  sendMessageButton: [
+    {
+      locale: "es-MX",
+      text: "Enviar mensaje",
+    },
+    {
+      locale: "en-US",
+      text: "Send message",
     },
   ],
 };
@@ -177,7 +188,11 @@ const Contact = () => {
             type="submit"
             className="rounded-lg bg-primary-700 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
           >
-            Send message
+            {
+              ContactInfo.sendMessageButton.filter(
+                (item) => item.locale === locale
+              )[0]?.text
+            }
           </button>
         </form>
       </div>
