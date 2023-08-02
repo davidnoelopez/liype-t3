@@ -1,3 +1,6 @@
+import { useRouter } from "next/router";
+import { LocalizedText } from "~/types";
+
 // const contactData: {
 //   address: string;
 //   phone: string;
@@ -13,16 +16,101 @@
 //   email: "contacto@liype.com",
 // };
 
+const ContactInfo: {
+  title: LocalizedText[];
+  description: LocalizedText[];
+  formEmail: LocalizedText[];
+  formSubject: LocalizedText[];
+  formSubjectPlaceholder: LocalizedText[];
+  formMessage: LocalizedText[];
+  formMessagePlaceholder: LocalizedText[];
+} = {
+  title: [
+    {
+      locale: "es-MX",
+      text: "Contactanos",
+    },
+    {
+      locale: "en-US",
+      text: "Contact Us",
+    },
+  ],
+  description: [
+    {
+      locale: "es-MX",
+      text: "Contáctanos para recibir sin costo una auditoria del estatus real de tu negocio y asi poder regularizarlo. Nosotros lo tramitamos por ti.",
+    },
+    {
+      locale: "en-US",
+      text: "Contact us to receive a free audit of the real status of your business and thus be able to regularize it. We process it for you.",
+    },
+  ],
+  formEmail: [
+    {
+      locale: "es-MX",
+      text: "Tu correo",
+    },
+    {
+      locale: "en-US",
+      text: "Your email",
+    },
+  ],
+  formSubject: [
+    {
+      locale: "es-MX",
+      text: "Asunto",
+    },
+    {
+      locale: "en-US",
+      text: "Subject",
+    },
+  ],
+  formSubjectPlaceholder: [
+    {
+      locale: "es-MX",
+      text: "Déjanos saber como podemos ayudarte",
+    },
+    {
+      locale: "en-US",
+      text: "Let us know how we can help you",
+    },
+  ],
+  formMessage: [
+    {
+      locale: "es-MX",
+      text: "Tu mensaje",
+    },
+    {
+      locale: "en-US",
+      text: "Your message",
+    },
+  ],
+  formMessagePlaceholder: [
+    {
+      locale: "es-MX",
+      text: "Describe brevemente como podemos ayudar a tu negocio.",
+    },
+    {
+      locale: "en-US",
+      text: "Briefly describe how we can help your business.",
+    },
+  ],
+};
+
 const Contact = () => {
+  const { locale } = useRouter();
+
   return (
     <section className="h-max pt-20 md:px-8">
       <div className="mx-auto max-w-screen-md px-4 py-8 lg:py-16">
         <h2 className="mb-4 text-center text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-          Contact Us
+          {ContactInfo.title.filter((item) => item.locale === locale)[0]?.text}
         </h2>
-        <p className="mb-8 text-center font-light text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
-          Got a technical issue? Want to send feedback about a beta feature?
-          Need details about our Business plan? Let us know.
+        <p className="mb-8 text-center font-normal text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
+          {
+            ContactInfo.description.filter((item) => item.locale === locale)[0]
+              ?.text
+          }
         </p>
         <form action="#" className="space-y-8">
           <div>
@@ -30,13 +118,17 @@ const Contact = () => {
               htmlFor="email"
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
             >
-              Your email
+              {
+                ContactInfo.formEmail.filter(
+                  (item) => item.locale === locale
+                )[0]?.text
+              }
             </label>
             <input
               type="email"
               id="email"
               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-primary-500 dark:focus:ring-primary-500"
-              placeholder="name@flowbite.com"
+              placeholder="daniel@email.com"
               required
             />
           </div>
@@ -45,13 +137,21 @@ const Contact = () => {
               htmlFor="subject"
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
             >
-              Subject
+              {
+                ContactInfo.formSubject.filter(
+                  (item) => item.locale === locale
+                )[0]?.text
+              }
             </label>
             <input
               type="text"
               id="subject"
               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-primary-500 dark:focus:ring-primary-500"
-              placeholder="Let us know how we can help you"
+              placeholder={
+                ContactInfo.formSubjectPlaceholder.filter(
+                  (item) => item.locale === locale
+                )[0]?.text
+              }
               required
             />
           </div>
@@ -66,7 +166,11 @@ const Contact = () => {
               id="message"
               rows={6}
               className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-              placeholder="Leave a comment..."
+              placeholder={
+                ContactInfo.formMessagePlaceholder.filter(
+                  (item) => item.locale === locale
+                )[0]?.text
+              }
             ></textarea>
           </div>
           <button
