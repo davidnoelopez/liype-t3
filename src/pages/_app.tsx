@@ -1,21 +1,28 @@
+import { type Session } from "next-auth";
+import { Analytics } from "@vercel/analytics/react";
+import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
 import "node_modules/flag-icons/css/flag-icons.min.css";
-
-import { api } from "~/utils/api";
-
-import "~/styles/globals.css";
-import Layout from "./layout";
 import { ThemeStateProvider } from "~/components/ThemeStateProvider";
-import { Analytics } from "@vercel/analytics/react";
+import "~/styles/globals.css";
+import { api } from "~/utils/api";
+import Layout from "./layout";
+import { Toaster } from "react-hot-toast";
 
-const MyApp: AppType = ({ Component, pageProps }) => {
+const MyApp: AppType<{ session: Session | null }> = ({
+  Component,
+  pageProps: { session, ...pageProps },
+}) => {
   return (
     <>
-      <ThemeStateProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeStateProvider>
+      <SessionProvider session={session}>
+        <ThemeStateProvider>
+          <Toaster />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeStateProvider>
+      </SessionProvider>
       <Analytics />
     </>
   );
