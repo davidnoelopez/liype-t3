@@ -80,5 +80,5 @@ model FormSubmission {
     role      String?
     city      String?
     state     String?
-    comment   String?
+    message   String?
 }

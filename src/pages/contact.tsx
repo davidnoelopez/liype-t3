@@ -1,115 +1,91 @@
+import { FormSubmission } from "@prisma/client";
 import { useRouter } from "next/router";
-import { LocalizedText } from "~/types";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import TextArea from "~/components/Forms/TextArea";
+import TextField from "~/components/Forms/TextField";
+import { api } from "~/utils/api";
+import { ContactInfo, contactData } from "~/utils/assets/contactData";
 
-// const contactData: {
-//   address: string;
-//   phone: string;
-//   email: string;
-//   social: {
-//     name: string;
-//     url: string;
-//   }[];
-// } = {
-//   address:
-//     "Torre Avalanz\nAv. Batallón de San Patricio No. 109\nCol. Zona Valle Oriente, San Pedro Garza García,\nNuevo León, México\nC.P: 66278",
-//   phone: "+52 81 2107 7484",
-//   email: "contacto@liype.com",
-// };
-
-const ContactInfo: {
-  title: LocalizedText[];
-  description: LocalizedText[];
-  formEmail: LocalizedText[];
-  formSubject: LocalizedText[];
-  formSubjectPlaceholder: LocalizedText[];
-  formMessage: LocalizedText[];
-  formMessagePlaceholder: LocalizedText[];
-  sendMessageButton: LocalizedText[];
-} = {
-  title: [
-    {
-      locale: "es-MX",
-      text: "Contactanos",
-    },
-    {
-      locale: "en-US",
-      text: "Contact Us",
-    },
-  ],
-  description: [
-    {
-      locale: "es-MX",
-      text: "Contáctanos para recibir sin costo una auditoria del estatus real de tu negocio y asi poder regularizarlo. Nosotros lo tramitamos por ti.",
-    },
-    {
-      locale: "en-US",
-      text: "Contact us to receive a free audit of the real status of your business and thus be able to regularize it. We process it for you.",
-    },
-  ],
-  formEmail: [
-    {
-      locale: "es-MX",
-      text: "Tu correo",
-    },
-    {
-      locale: "en-US",
-      text: "Your email",
-    },
-  ],
-  formSubject: [
-    {
-      locale: "es-MX",
-      text: "Asunto",
-    },
-    {
-      locale: "en-US",
-      text: "Subject",
-    },
-  ],
-  formSubjectPlaceholder: [
-    {
-      locale: "es-MX",
-      text: "Déjanos saber como podemos ayudarte",
-    },
-    {
-      locale: "en-US",
-      text: "Let us know how we can help you",
-    },
-  ],
-  formMessage: [
-    {
-      locale: "es-MX",
-      text: "Tu mensaje",
-    },
-    {
-      locale: "en-US",
-      text: "Your message",
-    },
-  ],
-  formMessagePlaceholder: [
-    {
-      locale: "es-MX",
-      text: "Describe brevemente como podemos ayudar a tu negocio.",
-    },
-    {
-      locale: "en-US",
-      text: "Briefly describe how we can help your business.",
-    },
-  ],
-  sendMessageButton: [
-    {
-      locale: "es-MX",
-      text: "Enviar mensaje",
-    },
-    {
-      locale: "en-US",
-      text: "Send message",
-    },
-  ],
-};
+export type FormSubmissionInput = Omit<
+  FormSubmission,
+  "id" | "createdAt" | "updatedAt"
+>;
 
 const Contact = () => {
   const { locale } = useRouter();
+  const router = useRouter();
+
+  const [formSubmissionData, setFormSubmissionData] =
+    useState<FormSubmissionInput>({
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      role: "",
+      city: "",
+      state: "",
+      message: "",
+    });
+  const { mutate: createFormSubmission, isLoading } =
+    api.formSubmission.create.useMutation({
+      onSuccess: () => {
+        router.push(
+          "/formConfirmation?name=" +
+            formSubmissionData.name +
+            "&email=" +
+            formSubmissionData.email
+        );
+      },
+      onError: () => {
+        toast.error(
+          locale === "es-MX"
+            ? "Hubo un error al enviar el formulario"
+            : "There was an error sending the form"
+        );
+      },
+    });
+
+  const [formValidation, setFormValidation] = useState({
+    name: false,
+    email: false,
+    city: false,
+    state: false,
+    message: false,
+  });
+
+  const errorMessages = [
+    {
+      locale: "es-MX",
+      text: "Este campo es requerido",
+    },
+    {
+      locale: "en-US",
+      text: "This field is required",
+    },
+  ];
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Validate Data:
+    const validation = {
+      name: formSubmissionData.name?.length === 0,
+      email: formSubmissionData.email?.length === 0,
+      city: formSubmissionData.city?.length === 0,
+      state: formSubmissionData.state?.length === 0,
+      message: formSubmissionData.message?.length === 0,
+    };
+
+    setFormValidation(validation);
+
+    if (!Object.values(validation).every((value) => value)) {
+      return;
+    }
+
+    // TODO: Send Data:
+    // createFormSubmission(formSubmissionData);
+  };
 
   return (
     <section className="h-max pt-20 md:px-8">
@@ -123,70 +99,181 @@ const Contact = () => {
               ?.text
           }
         </p>
-        <form action="#" className="space-y-8">
-          <div>
-            <label
-              htmlFor="email"
-              className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              {
+        <form
+          action="#"
+          className="space-y-8"
+          onSubmit={handleSubmit}
+          noValidate
+        >
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
+            <TextField
+              name="name"
+              type="text"
+              label={
+                ContactInfo.formName.filter((item) => item.locale === locale)[0]
+                  ?.text
+              }
+              placeholder="Daniel Garza"
+              value={formSubmissionData.name || ""}
+              onChange={(value) =>
+                setFormSubmissionData({ ...formSubmissionData, name: value })
+              }
+              validationState={formValidation.name ? "invalid" : "valid"}
+              errorMessage={
+                errorMessages.filter((item) => item.locale === locale)[0]?.text
+              }
+              isRequired
+              minLength={0}
+              maxLength={50}
+            />
+            <TextField
+              name="email"
+              type="email"
+              label={
                 ContactInfo.formEmail.filter(
                   (item) => item.locale === locale
                 )[0]?.text
               }
-            </label>
-            <input
-              type="email"
-              id="email"
-              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-primary-500 dark:focus:ring-primary-500"
               placeholder="daniel@email.com"
-              required
+              value={formSubmissionData.email || ""}
+              onChange={(value) =>
+                setFormSubmissionData({ ...formSubmissionData, email: value })
+              }
+              validationState={formValidation.email ? "invalid" : "valid"}
+              errorMessage={
+                errorMessages.filter((item) => item.locale === locale)[0]?.text
+              }
+              isRequired
+              minLength={0}
+              maxLength={50}
             />
-          </div>
-          <div>
-            <label
-              htmlFor="subject"
-              className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              {
-                ContactInfo.formSubject.filter(
+            <TextField
+              name="phone"
+              type="tel"
+              label={
+                ContactInfo.formPhone.filter(
                   (item) => item.locale === locale
                 )[0]?.text
               }
-            </label>
-            <input
+              placeholder="+52 8112345678"
+              value={formSubmissionData.phone || ""}
+              onChange={(value) =>
+                setFormSubmissionData({ ...formSubmissionData, phone: value })
+              }
+              minLength={0}
+              maxLength={50}
+            />
+            <TextField
+              name="company"
               type="text"
-              id="subject"
-              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-primary-500 dark:focus:ring-primary-500"
-              placeholder={
-                ContactInfo.formSubjectPlaceholder.filter(
+              label={
+                ContactInfo.formCompany.filter(
                   (item) => item.locale === locale
                 )[0]?.text
               }
-              required
+              placeholder={
+                ContactInfo.formCompanyPlaceholder.filter(
+                  (item) => item.locale === locale
+                )[0]?.text
+              }
+              value={formSubmissionData.company || ""}
+              onChange={(value) =>
+                setFormSubmissionData({ ...formSubmissionData, company: value })
+              }
+              minLength={0}
+              maxLength={50}
+            />
+            <TextField
+              name="role"
+              type="text"
+              label={
+                ContactInfo.formRole.filter((item) => item.locale === locale)[0]
+                  ?.text
+              }
+              placeholder={
+                ContactInfo.formRolePlaceholder.filter(
+                  (item) => item.locale === locale
+                )[0]?.text
+              }
+              value={formSubmissionData.role || ""}
+              onChange={(value) =>
+                setFormSubmissionData({ ...formSubmissionData, role: value })
+              }
+              minLength={0}
+              maxLength={50}
+            />
+            <TextField
+              name="city"
+              type="text"
+              label={
+                ContactInfo.formCity.filter((item) => item.locale === locale)[0]
+                  ?.text
+              }
+              placeholder="Monterrey"
+              value={formSubmissionData.city || ""}
+              onChange={(value) =>
+                setFormSubmissionData({ ...formSubmissionData, city: value })
+              }
+              validationState={formValidation.city ? "invalid" : "valid"}
+              errorMessage={
+                errorMessages.filter((item) => item.locale === locale)[0]?.text
+              }
+              isRequired
+              minLength={0}
+              maxLength={50}
+            />
+            <TextField
+              name="state"
+              type="text"
+              label={
+                ContactInfo.formState.filter(
+                  (item) => item.locale === locale
+                )[0]?.text
+              }
+              placeholder="Nuevo León"
+              value={formSubmissionData.state || ""}
+              onChange={(value) =>
+                setFormSubmissionData({ ...formSubmissionData, state: value })
+              }
+              validationState={formValidation.state ? "invalid" : "valid"}
+              errorMessage={
+                errorMessages.filter((item) => item.locale === locale)[0]?.text
+              }
+              isRequired
+              minLength={0}
+              maxLength={50}
             />
           </div>
-          <div className="sm:col-span-2">
-            <label
-              htmlFor="message"
-              className="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
-            >
-              Your message
-            </label>
-            <textarea
-              id="message"
-              rows={6}
-              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-              placeholder={
-                ContactInfo.formMessagePlaceholder.filter(
-                  (item) => item.locale === locale
-                )[0]?.text
-              }
-            ></textarea>
-          </div>
+          <TextArea
+            name="message"
+            type="text"
+            rows={5}
+            label={
+              ContactInfo.formMessage.filter(
+                (item) => item.locale === locale
+              )[0]?.text
+            }
+            placeholder={
+              ContactInfo.formMessagePlaceholder.filter(
+                (item) => item.locale === locale
+              )[0]?.text
+            }
+            value={formSubmissionData.message || ""}
+            onChange={(value) =>
+              setFormSubmissionData({ ...formSubmissionData, message: value })
+            }
+            validationState={formValidation.message ? "invalid" : "valid"}
+            errorMessage={
+              errorMessages.filter((item) => item.locale === locale)[0]?.text
+            }
+            isRequired
+            minLength={0}
+            maxLength={500}
+          />
           <button
             type="submit"
             className="rounded-lg bg-primary-700 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
+            disabled={isLoading}
           >
             {
               ContactInfo.sendMessageButton.filter(
