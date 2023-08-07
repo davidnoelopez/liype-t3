@@ -30,7 +30,7 @@ export const formSubmissionRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      return await ctx.prisma.formSubmission.create({
+      const submission = await ctx.prisma.formSubmission.create({
         data: {
           name: input.name,
           email: input.email,
@@ -42,6 +42,8 @@ export const formSubmissionRouter = createTRPCRouter({
           message: input.message,
         },
       });
+
+      return submission;
     }),
 
   getAll: protectedProcedure.query(async ({ ctx }) => {

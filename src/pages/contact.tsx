@@ -29,12 +29,9 @@ const Contact = () => {
     });
   const { mutate: createFormSubmission, isLoading } =
     api.formSubmission.create.useMutation({
-      onSuccess: () => {
+      onSuccess: (data) => {
         router.push(
-          "/formConfirmation?name=" +
-            formSubmissionData.name +
-            "&email=" +
-            formSubmissionData.email
+          "/formConfirmation?name=" + data.name + "&email=" + data.email
         );
       },
       onError: () => {
@@ -46,7 +43,7 @@ const Contact = () => {
       },
     });
 
-  const [formValidation, setFormValidation] = useState({
+  const [formErrorValidation, setFormErrorValidation] = useState({
     name: false,
     email: false,
     city: false,
@@ -77,14 +74,27 @@ const Contact = () => {
       message: formSubmissionData.message?.length === 0,
     };
 
-    setFormValidation(validation);
+    setFormErrorValidation(validation);
 
-    if (!Object.values(validation).every((value) => value)) {
+    if (Object.values(validation).every((value) => value)) {
+      toast.error(
+        locale === "es-MX"
+          ? "Por favor llena todos los campos requeridos"
+          : "Please fill all required fields"
+      );
       return;
     }
 
-    // TODO: Send Data:
-    // createFormSubmission(formSubmissionData);
+    createFormSubmission({
+      name: formSubmissionData.name!,
+      email: formSubmissionData.email!,
+      phone: formSubmissionData.phone!,
+      company: formSubmissionData.company!,
+      role: formSubmissionData.role!,
+      city: formSubmissionData.city!,
+      state: formSubmissionData.state!,
+      message: formSubmissionData.message!,
+    });
   };
 
   return (
@@ -118,7 +128,7 @@ const Contact = () => {
               onChange={(value) =>
                 setFormSubmissionData({ ...formSubmissionData, name: value })
               }
-              validationState={formValidation.name ? "invalid" : "valid"}
+              validationState={formErrorValidation.name ? "invalid" : "valid"}
               errorMessage={
                 errorMessages.filter((item) => item.locale === locale)[0]?.text
               }
@@ -139,7 +149,7 @@ const Contact = () => {
               onChange={(value) =>
                 setFormSubmissionData({ ...formSubmissionData, email: value })
               }
-              validationState={formValidation.email ? "invalid" : "valid"}
+              validationState={formErrorValidation.email ? "invalid" : "valid"}
               errorMessage={
                 errorMessages.filter((item) => item.locale === locale)[0]?.text
               }
@@ -214,7 +224,7 @@ const Contact = () => {
               onChange={(value) =>
                 setFormSubmissionData({ ...formSubmissionData, city: value })
               }
-              validationState={formValidation.city ? "invalid" : "valid"}
+              validationState={formErrorValidation.city ? "invalid" : "valid"}
               errorMessage={
                 errorMessages.filter((item) => item.locale === locale)[0]?.text
               }
@@ -235,7 +245,7 @@ const Contact = () => {
               onChange={(value) =>
                 setFormSubmissionData({ ...formSubmissionData, state: value })
               }
-              validationState={formValidation.state ? "invalid" : "valid"}
+              validationState={formErrorValidation.state ? "invalid" : "valid"}
               errorMessage={
                 errorMessages.filter((item) => item.locale === locale)[0]?.text
               }
@@ -262,7 +272,7 @@ const Contact = () => {
             onChange={(value) =>
               setFormSubmissionData({ ...formSubmissionData, message: value })
             }
-            validationState={formValidation.message ? "invalid" : "valid"}
+            validationState={formErrorValidation.message ? "invalid" : "valid"}
             errorMessage={
               errorMessages.filter((item) => item.locale === locale)[0]?.text
             }
