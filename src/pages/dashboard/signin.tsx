@@ -116,6 +116,7 @@ const SignInPage = () => {
                   className="rounded-lg border border-slate-500/50 p-2 text-center text-3xl tracking-widest text-slate-900"
                   value={token}
                   onChange={(e) => setToken(e.target.value.toUpperCase())}
+                  autoComplete="off"
                 />
                 <button
                   type="submit"
