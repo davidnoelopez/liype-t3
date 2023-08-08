@@ -28,6 +28,27 @@ const Meta = () => {
         locale: "es_MX",
         site_name: siteName,
       }}
+      additionalLinkTags={[
+        {
+          rel: "icon",
+          href: "/favicon.ico",
+        },
+        {
+          rel: "apple-touch-icon",
+          href: "/apple-touch-icon.jpg",
+          sizes: "180x180",
+        },
+        {
+          rel: "icon",
+          href: "/icon-32x32.png",
+          sizes: "32x32",
+        },
+        {
+          rel: "icon",
+          href: "/icon-16x16.png",
+          sizes: "16x16",
+        },
+      ]}
     />
   );
 };
