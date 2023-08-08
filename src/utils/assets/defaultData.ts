@@ -70,8 +70,7 @@ export const metaTagsMX = {
   title: "Licencias y Permisos - Gestores de trámites",
   description:
     "Grupo de gestores de trámites y permisos más confiable y veloz en México. Obtén tus permisos y licencias de manera ágil, segura y sin complicaciones.",
-  image:
-    "https://liype-t3.vercel.app/_next/image?url=%2Fmeta%3Fimage.png&w=500&q=100",
+  image: "/meta-image.png",
   url: "https://liype-t3.vercel.app",
 };
 
@@ -80,7 +79,6 @@ export const metaTagsUS = {
   title: "Licencias y Permisos - Permits Manager",
   description:
     "We are the most reliable and fast group of administrative managers for procedures and permits in Mexico. Obtain your permits quickly, securely, and hassle-free.",
-  image:
-    "https://liype-t3.vercel.app/_next/image?url=%2Fmeta%3Fimage.png&w=500&q=100",
+  image: "/meta-image.png",
   url: "https://liype-t3.vercel.app/en-US",
 };
