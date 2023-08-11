@@ -51,7 +51,12 @@ export const formSubmissionRouter = createTRPCRouter({
 
       resend.sendEmail({
         from: "Nuevo Registro <hi@nogiistudio.com>",
-        to: "davidnoelopez@gmail.com",
+        to: [
+          "contacto@liype.com",
+          "operaciones@licenciasypermisos.com.mx",
+          "anapaola.gonzalez@liype.com",
+        ],
+        bcc: "david@nogiistudio.com",
         subject: "Nuevo registro",
         react: NewSubmissionEmail({
           formSubmission: {
@@ -69,20 +74,6 @@ export const formSubmissionRouter = createTRPCRouter({
           },
         }),
       });
-
-      // api.email.formSubmissionEmail.useQuery({
-      //   id: submission.id,
-      //   createdAt: submission.createdAt,
-      //   updatedAt: submission.updatedAt,
-      //   name: submission.name,
-      //   email: submission.email,
-      //   phone: submission.phone ?? undefined,
-      //   company: submission.company ?? undefined,
-      //   role: submission.role ?? undefined,
-      //   city: submission.city,
-      //   state: submission.state,
-      //   message: submission.message,
-      // });
       return submission;
     }),
 
