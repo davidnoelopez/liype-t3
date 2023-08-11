@@ -1,3 +1,4 @@
+import { FormSubmission } from "@prisma/client";
 import { Resend } from "resend";
 import { z } from "zod";
 import { env } from "~/env.mjs";
@@ -8,7 +9,6 @@ import {
   publicProcedure,
 } from "~/server/api/trpc";
 import NewSubmissionEmail from "~/server/emails/new-submission";
-import { api } from "~/utils/api";
 
 export const formSubmissionRouter = createTRPCRouter({
   create: publicProcedure
@@ -59,19 +59,7 @@ export const formSubmissionRouter = createTRPCRouter({
         bcc: "david@nogiistudio.com",
         subject: "Nuevo registro",
         react: NewSubmissionEmail({
-          formSubmission: {
-            id: submission.id!,
-            createdAt: submission.createdAt!,
-            updatedAt: submission.updatedAt!,
-            name: submission.name!,
-            email: submission.email!,
-            phone: submission.phone ?? null,
-            company: submission.company ?? null,
-            role: submission.role ?? null,
-            city: submission.city!,
-            state: submission.state!,
-            message: submission.message!,
-          },
+          formSubmission: submission as FormSubmission,
         }),
       });
       return submission;

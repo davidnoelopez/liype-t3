@@ -13,7 +13,6 @@ import {
 } from "@react-email/components";
 import { Markdown } from "@react-email/markdown";
 import * as React from "react";
-import { env } from "~/env.mjs";
 
 interface NewSubmissionProps {
   formSubmission: FormSubmission;
@@ -21,7 +20,7 @@ interface NewSubmissionProps {
 
 const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
-  : env.NEXTAUTH_URL;
+  : "http://localhost:3000";
 
 export const NewSubmissionEmail = ({
   formSubmission = {

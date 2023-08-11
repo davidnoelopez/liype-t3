@@ -15,6 +15,7 @@ export const ContactInfo: {
   title: LocalizedText[];
   description: LocalizedText[];
   formName: LocalizedText[];
+  formNamePlaceholder: LocalizedText[];
   formEmail: LocalizedText[];
   formPhone: LocalizedText[];
   formCompany: LocalizedText[];
@@ -55,6 +56,16 @@ export const ContactInfo: {
     {
       locale: "en-US",
       text: "Name",
+    },
+  ],
+  formNamePlaceholder: [
+    {
+      locale: "es-MX",
+      text: "Tu nombre",
+    },
+    {
+      locale: "en-US",
+      text: "Your name",
     },
   ],
   formEmail: [

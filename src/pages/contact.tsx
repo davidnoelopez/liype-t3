@@ -123,7 +123,11 @@ const Contact = () => {
                 ContactInfo.formName.filter((item) => item.locale === locale)[0]
                   ?.text
               }
-              placeholder="Daniel Garza"
+              placeholder={
+                ContactInfo.formNamePlaceholder.filter(
+                  (item) => item.locale === locale
+                )[0]?.text
+              }
               value={formSubmissionData.name || ""}
               onChange={(value) =>
                 setFormSubmissionData({ ...formSubmissionData, name: value })
@@ -144,7 +148,7 @@ const Contact = () => {
                   (item) => item.locale === locale
                 )[0]?.text
               }
-              placeholder="daniel@email.com"
+              placeholder="company@mail.com"
               value={formSubmissionData.email || ""}
               onChange={(value) =>
                 setFormSubmissionData({ ...formSubmissionData, email: value })
