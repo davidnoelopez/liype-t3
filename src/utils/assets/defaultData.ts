@@ -36,11 +36,11 @@ export const defaultData: DefaultData = {
   serviceDescription: [
     {
       locale: "es-MX",
-      text: "Somos el grupo de gestores de trámites y permisos más confiable y veloz en México. Contamos con más de 30 años de experiencia. Obtén tus permisos de manera ágil, segura y sin complicaciones. Lo tramitamos por ti.",
+      text: "Somos el grupo de gestores de trámites y permisos más confiable y veloz en México. Contamos con más de 30 años de experiencia. Obtén tus permisos de manera ágil, segura y sin complicaciones.",
     },
     {
       locale: "en-US",
-      text: "We are the most reliable and fast group of administrative managers for procedures and permits in Mexico. We have over 30 years of experience. Obtain your permits quickly, securely, and hassle-free. We handle the process for you.",
+      text: "We are the most reliable and fast group of administrative managers for procedures and permits in Mexico. We have over 30 years of experience. Obtain your permits quickly, securely, and hassle-free.",
     },
   ],
   callToAction: [
