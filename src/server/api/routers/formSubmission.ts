@@ -1,10 +1,14 @@
+import { Resend } from "resend";
 import { z } from "zod";
+import { env } from "~/env.mjs";
 
 import {
   createTRPCRouter,
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
+import NewSubmissionEmail from "~/server/emails/new-submission";
+import { api } from "~/utils/api";
 
 export const formSubmissionRouter = createTRPCRouter({
   create: publicProcedure
@@ -24,9 +28,9 @@ export const formSubmissionRouter = createTRPCRouter({
         phone: z.string().max(15).optional(),
         company: z.string().max(50).optional(),
         role: z.string().max(50).optional(),
-        city: z.string().max(50).optional(),
-        state: z.string().max(50).optional(),
-        message: z.string().min(1).max(500).optional(),
+        city: z.string().max(50),
+        state: z.string().max(50),
+        message: z.string().min(1).max(500),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -43,6 +47,42 @@ export const formSubmissionRouter = createTRPCRouter({
         },
       });
 
+      const resend = new Resend(env.RESEND_API_KEY);
+
+      resend.sendEmail({
+        from: "Nuevo Registro <hi@nogiistudio.com>",
+        to: "davidnoelopez@gmail.com",
+        subject: "Nuevo registro",
+        react: NewSubmissionEmail({
+          formSubmission: {
+            id: submission.id!,
+            createdAt: submission.createdAt!,
+            updatedAt: submission.updatedAt!,
+            name: submission.name!,
+            email: submission.email!,
+            phone: submission.phone ?? null,
+            company: submission.company ?? null,
+            role: submission.role ?? null,
+            city: submission.city!,
+            state: submission.state!,
+            message: submission.message!,
+          },
+        }),
+      });
+
+      // api.email.formSubmissionEmail.useQuery({
+      //   id: submission.id,
+      //   createdAt: submission.createdAt,
+      //   updatedAt: submission.updatedAt,
+      //   name: submission.name,
+      //   email: submission.email,
+      //   phone: submission.phone ?? undefined,
+      //   company: submission.company ?? undefined,
+      //   role: submission.role ?? undefined,
+      //   city: submission.city,
+      //   state: submission.state,
+      //   message: submission.message,
+      // });
       return submission;
     }),
 

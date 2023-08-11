@@ -73,12 +73,12 @@ model FormSubmission {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    name      String?
-    email     String?
+    name      String
+    email     String
     phone     String?
     company   String?
     role      String?
-    city      String?
-    state     String?
-    message   String?
+    city      String
+    state     String
+    message   String
 }
