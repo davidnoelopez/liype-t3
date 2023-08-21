@@ -1,6 +1,7 @@
 import Navbar from "~/components/Navbar";
 import Meta from "~/components/Meta";
 import { defaultData } from "~/utils/assets/defaultData";
+import Footer from "../Footer";
 
 type Props = {
   children: React.ReactNode;
@@ -39,7 +40,7 @@ const WebLayout = ({ children }: Props) => {
         <Meta />
         <Navbar defaultData={defaultData} />
         <main>{children}</main>
-
+        <Footer />
         <div className="absolute inset-x-0 top-[calc(50%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl">
           <svg
             className="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"

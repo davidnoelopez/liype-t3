@@ -11,7 +11,7 @@ interface FlagIconProps {
 function FlagIcon({ countryCode = "" }: FlagIconProps) {
   return (
     <span
-      className={`fi fis mr-2 inline-block h-6 w-6 rounded-full border-0 bg-white text-2xl fi-${countryCode}`}
+      className={`fi fis botext-2xl mr-2 inline-block h-6 w-6 rounded-full bg-white text-2xl fi-${countryCode}`}
     />
   );
 }
@@ -81,9 +81,9 @@ export const LanguageSelector = ({ languages }: Props) => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute z-10 mt-2 w-auto origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-slate-700/80">
+            <Menu.Items className="absolute z-10 mt-2 w-auto origin-top-right rounded-md bg-slate-100/50 shadow-lg ring-1 ring-black ring-opacity-5 backdrop-blur-sm focus:outline-none dark:bg-slate-700/50 md:-top-24">
               <div className="">
-                {languages.map((language, index) => {
+                {languages.map((language) => {
                   return (
                     <Menu.Item key={language.key}>
                       <Link
