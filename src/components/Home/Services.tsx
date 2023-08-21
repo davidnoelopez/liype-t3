@@ -289,6 +289,32 @@ const OtherServices: Service[] = [
       },
     ],
   },
+  {
+    id: 11,
+    title: [
+      {
+        locale: "es-MX",
+        text: "Permiso de Remodelación de Fachada",
+      },
+      {
+        locale: "en-US",
+        text: "Facade Remodeling Permit",
+      },
+    ],
+  },
+  {
+    id: 12,
+    title: [
+      {
+        locale: "es-MX",
+        text: "Permiso de Espectaculos",
+      },
+      {
+        locale: "en-US",
+        text: "Entertainment Permit",
+      },
+    ],
+  },
 ];
 
 const OtherServicesTop = (service: Service) => {
