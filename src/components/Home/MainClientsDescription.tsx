@@ -136,7 +136,7 @@ const MainClientsDescription = () => {
             />
           </div>
           {ClientsGeneralData.map((client, index) => (
-            <div className="md:-mx-4 md:flex md:items-start" key={index}>
+            <div className="md:mx-2 md:flex md:items-start" key={index}>
               <span className="inline-block rounded-xl bg-blue-200 p-2 text-blue-800 dark:bg-blue-800 dark:text-white md:mx-4">
                 {client.icon}
               </span>

@@ -62,7 +62,7 @@ const ClientsMarqueeData = [
 
 const ClientsMarquee = () => {
   return (
-    <div className="px-0 py-10 sm:container sm:mx-auto sm:px-6">
+    <div className="px-0 py-10">
       <div className="relative flex gap-10 overflow-hidden pb-10">
         <div className="flex min-w-full shrink-0 animate-marquee items-center justify-around gap-8">
           {ClientsMarqueeData.map((client, index) => (
