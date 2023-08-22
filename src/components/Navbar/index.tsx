@@ -8,12 +8,6 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { DefaultData } from "~/types";
 import { useThemeState } from "../ThemeStateProvider";
 
-const navigation = [
-  { name: "Servicios", href: "#services" },
-  { name: "Clientes", href: "#clients" },
-  { name: "Contacto", href: "/contact" },
-];
-
 interface Props {
   defaultData: DefaultData;
 }
@@ -22,6 +16,12 @@ const index = ({ defaultData }: Props) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { pathname, locale } = useRouter();
   const { theme } = useThemeState();
+  const navigation = [
+    { name: locale === "es-MX" ? "Servicios" : "Services", href: "#services" },
+    { name: locale === "es-MX" ? "Clientes" : "Our Clients", href: "#clients" },
+    { name: locale === "es-MX" ? "Acerca de" : "About Us", href: "#about" },
+    { name: locale === "es-MX" ? "Contacto" : "Contact Us", href: "/contact" },
+  ];
   const logo =
     theme === "dark"
       ? "/assets/logoLIYPE_light.png"
@@ -79,7 +79,7 @@ const index = ({ defaultData }: Props) => {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <div className="hidden md:flex md:gap-x-12">
+        <div className="hidden md:flex md:gap-x-8 lg:gap-x-12">
           {navigation.map((item) => (
             <Link
               key={item.name}
