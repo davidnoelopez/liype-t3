@@ -25,7 +25,7 @@ const Footer = () => {
         <hr className="mb-6 border-gray-300 dark:border-gray-700" />
 
         <div className="flex flex-col items-center sm:flex-row sm:justify-between">
-          <p className="text-center text-xs text-gray-500 sm:text-start">
+          <div className="text-center text-xs text-gray-500 sm:text-start">
             {`© Copyright ${new Date().getFullYear()}. ${
               footerData.copyright.filter((item) => item.locale === locale)[0]
                 ?.text
@@ -41,7 +41,7 @@ const Footer = () => {
                 Nogii Studio
               </Link>
             </p>
-          </p>
+          </div>
 
           <div className="-mx-2 mt-3 flex items-center sm:mt-0">
             <Link
