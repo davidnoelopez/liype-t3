@@ -20,5 +20,24 @@ const config = {
     defaultLocale: "es-MX",
     localeDetection: false,
   },
+  redirects: async () => {
+    return [
+      {
+        source: "/services",
+        destination: "/#services",
+        permanent: true,
+      },
+      {
+        source: "/clients",
+        destination: "/#clients",
+        permanent: true,
+      },
+      {
+        source: "/about",
+        destination: "/#about",
+        permanent: true,
+      },
+    ];
+  }
 };
 export default config;
