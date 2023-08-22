@@ -1,0 +1,20 @@
+name: MySQL Query
+on:
+  schedule:
+  - cron: "0 2 * * 6"
+
+jobs:
+  query:
+    runs-on: ubuntu-20.04
+
+    env:
+      DB_DATABASE: liype
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
+    steps:
+      - run: |
+          sudo /etc/init.d/mysql start
+          mysql -h ${{ env.DB_HOST }} -u ${{ env.DB_USER }} -p${{ env.DB_PASSWORD }} --ssl-mode=VERIFY_IDENTITY --ssl-ca=/etc/ssl/certs/ca-certificates.crt
+          select count(*) from User
