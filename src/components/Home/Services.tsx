@@ -1,6 +1,6 @@
 import { motion, useInView, Variants } from "framer-motion";
 import { useRouter } from "next/router";
-import { useState, type ReactElement, useRef } from "react";
+import { type ReactElement, useRef } from "react";
 import { BiStore } from "react-icons/bi";
 import { MdHealthAndSafety } from "react-icons/md";
 import { PiBeerBottleFill } from "react-icons/pi";
@@ -344,7 +344,6 @@ const OtherServicesTop = (service: Service) => {
       className="relative hidden lg:block"
       initial="hide"
       whileInView={inView ? "show" : "hide"}
-      exit="hide"
       viewport={{ once: true }}
       variants={enterTop}
     >
@@ -404,11 +403,10 @@ const Services = () => {
         <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 px-8 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
           {MainServices.map((service, index) => (
             <motion.div
-              key={"main-" + index}
               className="relative pl-16"
               initial="hide"
               whileInView="show"
-              exit="hide"
+              viewport={{ once: true }}
               variants={index % 2 === 0 ? enterLeft : enterRight}
             >
               <dt className="text-xl font-semibold leading-7 text-gray-900 dark:text-gray-100 sm:text-2xl">
@@ -441,11 +439,10 @@ const Services = () => {
         >
           {OtherServices.map((service, index) => (
             <motion.div
-              key={`sm-${index}`}
               className="relative lg:hidden"
               initial="hide"
               whileInView="show"
-              exit="hide"
+              viewport={{ once: true }}
               variants={index % 2 === 0 ? enterLeft : enterRight}
             >
               <dt className="flex h-full w-full cursor-default items-center rounded-lg border border-slate-400/30 bg-slate-200/50 p-4 text-center text-lg font-medium leading-6 text-gray-600 dark:border-slate-400/20 dark:bg-slate-900/20 dark:text-gray-300">

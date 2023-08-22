@@ -27,21 +27,21 @@ const Title = ({ title, align }: Props) => {
             variants={lineVariants}
             initial="hidden"
             whileInView="line40"
-            exit="hidden"
+            viewport={{ once: true }}
             className="inline-block h-1 w-40 rounded-full bg-blue-800"
           ></motion.span>
           <motion.span
             variants={lineVariants}
             initial="hidden"
             whileInView="line3"
-            exit="hidden"
+            viewport={{ once: true }}
             className="ml-1 inline-block h-1 w-3 rounded-full bg-blue-800"
           ></motion.span>
           <motion.span
             variants={lineVariants}
             initial="hidden"
             whileInView="line1"
-            exit="hidden"
+            viewport={{ once: true }}
             className="ml-1 inline-block h-1 w-1 rounded-full bg-blue-800"
           ></motion.span>
         </div>

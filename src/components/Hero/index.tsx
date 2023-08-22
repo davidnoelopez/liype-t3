@@ -41,7 +41,7 @@ export default function Hero({ defaultData }: Props) {
       className="mx-auto max-w-2xl px-8 py-32 pb-24 sm:py-48 md:py-48 md:pb-36"
       initial="hide"
       whileInView="show"
-      exit="hide"
+      viewport={{ once: true }}
       variants={introHeaderVariants}
     >
       <div className="text-center">
