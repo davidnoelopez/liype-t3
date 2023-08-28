@@ -63,7 +63,7 @@ export const authOptions: NextAuthOptions = {
           from: "Verificación <verify@nogiistudio.com>",
           to: email,
           subject: "Token de verificación",
-          text: `Hola,\n\nVerifica tu cuenta presionando este link: \n${url}. \n\nO usando el token: ${token}\n\n`,
+          text: `Hola,\n\nVerifica tu cuenta presionando este link: \n${url}. \n\nO usa el token: ${token}\n\n`,
         };
 
         const transporter = nodemailer.createTransport(env.EMAIL_SERVER);
