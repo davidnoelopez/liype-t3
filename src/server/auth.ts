@@ -53,17 +53,17 @@ export const authOptions: NextAuthOptions = {
   providers: [
     EmailProvider({
       server: env.EMAIL_SERVER,
-      from: env.EMAIL_FROM,
+      from: "Verificación <verify@nogiistudio.com>",
       generateVerificationToken: () => {
         // generate a 6 character, base 36 (0-9, a-z). e.g. 2C7B8S
         return Math.random().toString(36).slice(2, 8).toUpperCase();
       },
       sendVerificationRequest: ({ identifier: email, url, token }) => {
         const mailOptions = {
-          from: env.EMAIL_FROM,
+          from: "Verificación <verify@nogiistudio.com>",
           to: email,
-          subject: "Account Verification Token",
-          text: `Hello,\n\nPlease verify your account by clicking the link: \n${url}. \n\nOr using the token: ${token}\n\n`,
+          subject: "Token de verificación",
+          text: `Hola,\n\nVerifica tu cuenta presionando este link: \n${url}. \n\nO usando el token: ${token}\n\n`,
         };
 
         const transporter = nodemailer.createTransport(env.EMAIL_SERVER);

@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 
@@ -24,7 +24,7 @@ const Dashboard: NextPage = () => {
             {status === "unauthenticated" ? (
               <Link
                 href="/dashboard/signin"
-                className="rounded-lg bg-blue-500 p-4 text-white"
+                className="mt-4 rounded-md bg-slate-400/70 p-3 text-white backdrop-blur-sm transition duration-300 ease-in-out hover:bg-slate-400/80"
               >
                 Iniciar sesión
               </Link>
@@ -34,6 +34,12 @@ const Dashboard: NextPage = () => {
                   {sessionData?.user?.name}
                 </h2>
                 <p className="text-xl">{sessionData?.user?.email}</p>
+                <button
+                  onClick={() => signOut()}
+                  className="mt-4 rounded-md bg-slate-400/70 p-3 text-white backdrop-blur-sm transition duration-300 ease-in-out hover:bg-slate-400/80"
+                >
+                  Cerrar sesión
+                </button>
               </>
             )}
           </div>

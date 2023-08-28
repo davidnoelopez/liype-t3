@@ -91,7 +91,7 @@ const SignInPage = () => {
           <Loading />
         </div>
       ) : (
-        <div className="flex max-w-xs flex-col gap-4 rounded-xl bg-slate-400/20 p-4 dark:bg-white/10 ">
+        <div className="flex max-w-xs flex-col gap-4 rounded-xl bg-slate-400/20 p-4 dark:bg-white/10 dark:text-slate-200">
           {sentMail ? (
             <>
               <h3 className="text-2xl font-bold">Revisa tu correo</h3>
@@ -113,7 +113,7 @@ const SignInPage = () => {
                   name="token"
                   placeholder="Código"
                   id="token"
-                  className="rounded-lg border border-slate-500/50 p-2 text-center text-3xl tracking-widest text-slate-900"
+                  className="rounded-lg border border-slate-500/50 p-2 text-center text-3xl tracking-widest text-slate-900 "
                   value={token}
                   onChange={(e) => setToken(e.target.value.toUpperCase())}
                   autoComplete="off"
@@ -136,7 +136,7 @@ const SignInPage = () => {
               </Link>
             </>
           ) : (
-            <div className="dark:text-white">
+            <div className="dark:text-slate-200">
               <h3 className="text-2xl font-bold">Iniciar Sesión</h3>
               <div className="text-md">
                 Ingresa tu correo y recibiras un enlace para iniciar sesión.
