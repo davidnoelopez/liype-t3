@@ -38,9 +38,11 @@ const WebLayout = ({ children }: Props) => {
         </div>
 
         <Meta />
-        <Navbar defaultData={defaultData} />
-        <main>{children}</main>
-        <Footer />
+        <div className="flex h-screen flex-col">
+          <Navbar defaultData={defaultData} />
+          <main>{children}</main>
+          <Footer />
+        </div>
         <div className="absolute inset-x-0 top-[calc(50%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl">
           <svg
             className="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"

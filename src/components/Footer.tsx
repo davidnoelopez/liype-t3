@@ -20,7 +20,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-transparent">
+    <footer className="mt-auto bg-transparent">
       <div className=" mx-auto px-6 py-8">
         <hr className="mb-6 border-gray-300 dark:border-gray-700" />
 
