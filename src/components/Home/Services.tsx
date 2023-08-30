@@ -403,6 +403,7 @@ const Services = () => {
         <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 px-8 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
           {MainServices.map((service, index) => (
             <motion.div
+              key={service.id}
               className="relative pl-16"
               initial="hide"
               whileInView="show"
@@ -439,6 +440,7 @@ const Services = () => {
         >
           {OtherServices.map((service, index) => (
             <motion.div
+              key={`sm-${index}`}
               className="relative lg:hidden"
               initial="hide"
               whileInView="show"
