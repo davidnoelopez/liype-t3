@@ -12,6 +12,26 @@ interface Props {
   defaultData: DefaultData;
 }
 
+const logoImage = (
+  <>
+    <Image
+      src="/assets/logoLIYPE_light.png"
+      alt="Licencias y Permisos"
+      className="hidden dark:block"
+      width={132}
+      height={40}
+      quality={100}
+    />
+    <Image
+      src="/assets/logoLIYPE_dark.png"
+      className="block dark:hidden"
+      alt="Licencias y Permisos"
+      width={132}
+      height={40}
+      quality={100}
+    />
+  </>
+);
 const index = ({ defaultData }: Props) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { pathname, locale } = useRouter();
@@ -22,10 +42,6 @@ const index = ({ defaultData }: Props) => {
     { name: locale === "es-MX" ? "Acerca de" : "About Us", href: "#about" },
     { name: locale === "es-MX" ? "Contacto" : "Contact Us", href: "/contact" },
   ];
-  const logo =
-    theme === "dark"
-      ? "/assets/logoLIYPE_light.png"
-      : "/assets/logoLIYPE_dark.png";
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -50,13 +66,7 @@ const index = ({ defaultData }: Props) => {
             onClick={() => scrollTo({ top: 0, behavior: "smooth" })}
           >
             <span className="sr-only">Licencias y Permisos</span>
-            <Image
-              src={logo}
-              alt="Licencias y Permisos"
-              width={132}
-              height={40}
-              quality={100}
-            />
+            {logoImage}
           </Link>
         </div>
         <div className="flex md:hidden">
@@ -121,13 +131,7 @@ const index = ({ defaultData }: Props) => {
               scroll={false}
             >
               <span className="sr-only">Licencias y Permisos</span>
-              <Image
-                src={logo}
-                alt="Licencias y Permisos"
-                width={132}
-                height={40}
-                quality={100}
-              />
+              {logoImage}
             </Link>
             <button
               type="button"
