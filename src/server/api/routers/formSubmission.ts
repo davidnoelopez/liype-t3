@@ -68,4 +68,14 @@ export const formSubmissionRouter = createTRPCRouter({
   getAll: protectedProcedure.query(async ({ ctx }) => {
     return await ctx.prisma.formSubmission.findMany();
   }),
+
+  getById: publicProcedure
+    .input(z.string())
+    .query(async ({ ctx, input: id }) => {
+      return await ctx.prisma.formSubmission.findUnique({
+        where: {
+          id: id,
+        },
+      });
+    }),
 });

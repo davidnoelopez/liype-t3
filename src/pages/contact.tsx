@@ -30,9 +30,7 @@ const Contact = () => {
   const { mutate: createFormSubmission, isLoading } =
     api.formSubmission.create.useMutation({
       onSuccess: (data) => {
-        router.push(
-          "/formConfirmation?name=" + data.name + "&email=" + data.email
-        );
+        router.push("/formConfirmation?i=" + data.id);
       },
       onError: () => {
         toast.error(
