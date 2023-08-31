@@ -3,13 +3,13 @@ import { type Role } from "@prisma/client";
 import { type GetServerSidePropsContext } from "next";
 import {
   getServerSession,
-  type NextAuthOptions,
   type DefaultSession,
+  type NextAuthOptions,
 } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
+import { Resend } from "resend";
 import { env } from "~/env.mjs";
 import { prisma } from "~/server/db";
-import nodemailer from "nodemailer";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -59,21 +59,19 @@ export const authOptions: NextAuthOptions = {
         return Math.random().toString(36).slice(2, 8).toUpperCase();
       },
       sendVerificationRequest: ({ identifier: email, url, token }) => {
-        const mailOptions = {
-          from: "Verificación <verify@nogiistudio.com>",
-          to: email,
-          subject: "Token de verificación",
-          text: `Hola,\n\nVerifica tu cuenta presionando este link: \n${url}. \n\nO usa el token: ${token}\n\n`,
-        };
+        const resend = new Resend(env.RESEND_API_KEY);
 
-        const transporter = nodemailer.createTransport(env.EMAIL_SERVER);
-        transporter.sendMail(mailOptions, function (err, info) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("Email sent: " + info.response);
-          }
-        });
+        try {
+          resend.sendEmail({
+            from: "Verificación <no-reply@nogiistudio.com>",
+            to: [email],
+            subject: "Token de verificación",
+            text: `Hola,\n\nVerifica tu cuenta presionando este link: \n${url}. \n\nO usa el token: ${token}\n\n`,
+          });
+          console.log("Verification email sent successfully to: " + email);
+        } catch (error) {
+          console.log(error);
+        }
       },
       maxAge: 10 * 60, // 10 minutes
     }),
