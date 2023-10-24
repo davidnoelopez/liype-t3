@@ -85,7 +85,7 @@ const SignInPage = () => {
   }, [token, email, callbackUrl]);
 
   return (
-    <div className="mt-20 flex h-full place-content-center">
+    <div className="mt-20 flex place-content-center">
       {status === "loading" || status === "authenticated" ? (
         <div className="block w-full justify-center">
           <Loading />

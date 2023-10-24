@@ -167,45 +167,48 @@ const Contact = () => {
             minLength={0}
             maxLength={50}
           />
-          <TextField
-            name="company"
-            type="text"
-            label={
-              ContactInfo.formCompany.filter(
-                (item) => item.locale === locale
-              )[0]?.text
-            }
-            placeholder={
-              ContactInfo.formCompanyPlaceholder.filter(
-                (item) => item.locale === locale
-              )[0]?.text
-            }
-            value={formSubmissionData.company || ""}
-            onChange={(value) =>
-              setFormSubmissionData({ ...formSubmissionData, company: value })
-            }
-            minLength={0}
-            maxLength={50}
-          />
-          <TextField
-            name="role"
-            type="text"
-            label={
-              ContactInfo.formRole.filter((item) => item.locale === locale)[0]
-                ?.text
-            }
-            placeholder={
-              ContactInfo.formRolePlaceholder.filter(
-                (item) => item.locale === locale
-              )[0]?.text
-            }
-            value={formSubmissionData.role || ""}
-            onChange={(value) =>
-              setFormSubmissionData({ ...formSubmissionData, role: value })
-            }
-            minLength={0}
-            maxLength={50}
-          />
+          <div className="hidden">
+            <TextField
+              name="company"
+              type="text"
+              label={
+                ContactInfo.formCompany.filter(
+                  (item) => item.locale === locale
+                )[0]?.text
+              }
+              placeholder={
+                ContactInfo.formCompanyPlaceholder.filter(
+                  (item) => item.locale === locale
+                )[0]?.text
+              }
+              value={formSubmissionData.company || ""}
+              onChange={(value) =>
+                setFormSubmissionData({ ...formSubmissionData, company: value })
+              }
+              minLength={0}
+              maxLength={50}
+            />
+            <TextField
+              name="role"
+              type="text"
+              label={
+                ContactInfo.formRole.filter((item) => item.locale === locale)[0]
+                  ?.text
+              }
+              placeholder={
+                ContactInfo.formRolePlaceholder.filter(
+                  (item) => item.locale === locale
+                )[0]?.text
+              }
+              value={formSubmissionData.role || ""}
+              onChange={(value) =>
+                setFormSubmissionData({ ...formSubmissionData, role: value })
+              }
+              minLength={0}
+              maxLength={50}
+            />
+          </div>
+
           <TextField
             name="city"
             type="text"
