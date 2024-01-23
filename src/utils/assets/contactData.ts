@@ -151,21 +151,21 @@ export const ContactInfo: {
   formMessage: [
     {
       locale: "es-MX",
-      text: "Tu mensaje",
+      text: "Cuentanos de tu negocio",
     },
     {
       locale: "en-US",
-      text: "Your message",
+      text: "Tell us about your business",
     },
   ],
   formMessagePlaceholder: [
     {
       locale: "es-MX",
-      text: "Describe brevemente como podemos ayudar a tu negocio.",
+      text: "Describe brevemente tu negocio.",
     },
     {
       locale: "en-US",
-      text: "Briefly describe how we can help your business.",
+      text: "Briefly describe your business.",
     },
   ],
   sendMessageButton: [

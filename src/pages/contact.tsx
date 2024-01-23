@@ -209,7 +209,7 @@ const Contact = () => {
             />
           </div>
 
-          <TextField
+          {/* <TextField
             name="city"
             type="text"
             label={
@@ -248,7 +248,7 @@ const Contact = () => {
             isRequired
             minLength={0}
             maxLength={50}
-          />
+          /> */}
         </div>
         <TextArea
           name="message"
@@ -277,7 +277,7 @@ const Contact = () => {
         />
         <button
           type="submit"
-          className="rounded-lg bg-primary-700 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
+          className="text-md w-fit rounded-md bg-blue-800 px-3.5 py-2.5 font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           disabled={isLoading}
         >
           {
