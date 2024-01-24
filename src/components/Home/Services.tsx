@@ -7,12 +7,14 @@ import { PiBeerBottleFill } from "react-icons/pi";
 import { RiGovernmentLine } from "react-icons/ri";
 import { LocalizedText } from "~/types";
 import Title from "../Title";
+import Link from "next/link";
 
 interface Service {
   id: number;
   title: LocalizedText[];
   desription?: LocalizedText[];
   icon?: ReactElement;
+  link?: string;
 }
 
 const titles: {
@@ -77,6 +79,7 @@ const MainServices: Service[] = [
       },
     ],
     icon: <PiBeerBottleFill className="h-6 w-6" />,
+    link: "/alcoholes",
   },
   {
     id: 2,
@@ -414,7 +417,20 @@ const Services = () => {
                 <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-200 text-blue-800 dark:bg-blue-800 dark:text-white">
                   {service.icon}
                 </div>
-                {service.title.filter((t) => t.locale === locale)[0]?.text}
+                {service.link ? (
+                  <Link href={service.link}>
+                    <p className="hover:underline">
+                      {
+                        service.title.filter((t) => t.locale === locale)[0]
+                          ?.text
+                      }
+                    </p>
+                  </Link>
+                ) : (
+                  <p>
+                    {service.title.filter((t) => t.locale === locale)[0]?.text}
+                  </p>
+                )}
               </dt>
               <dd className="mt-2 text-lg leading-7 text-gray-600 dark:text-gray-300">
                 {
