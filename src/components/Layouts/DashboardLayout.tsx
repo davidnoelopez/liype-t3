@@ -1,21 +1,17 @@
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/avatar";
 import { useSession } from "next-auth/react";
+import { Inter as FontSans } from "next/font/google";
 import Image from "next/image";
-import React from "react";
+import Link from "next/link";
+import React, { useEffect } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/avatar";
 import {
   NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
   navigationMenuItemStyle,
   navigationMenuTriggerStyle,
 } from "~/components/navigation-menu";
-import Link from "next/link";
-import { Inter as FontSans } from "next/font/google";
 import { cn } from "~/lib/utils";
 
 export const fontSans = FontSans({
@@ -29,6 +25,15 @@ type Props = {
 
 const DashboardLayout = ({ children }: Props) => {
   const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "unauthenticated" && window.location.pathname !== "/") {
+      if (window.location.pathname !== "/dashboard/signin") {
+        window.location.href = "/dashboard/signin";
+      }
+    }
+  }, [status]);
+
   return (
     <div
       className={cn(
@@ -66,6 +71,7 @@ const DashboardLayout = ({ children }: Props) => {
                   <Link href="/dashboard/clients" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
+                      active={window.location.pathname === "/dashboard/clients"}
                     >
                       Clientes
                     </NavigationMenuLink>

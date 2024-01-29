@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const Dashboard: NextPage = () => {
   const { data: sessionData, status } = useSession();
-  console.log(sessionData, status);
   return (
     <>
       <Head>
