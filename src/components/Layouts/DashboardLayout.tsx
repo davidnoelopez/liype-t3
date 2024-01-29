@@ -78,20 +78,11 @@ const DashboardLayout = ({ children }: Props) => {
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem className={navigationMenuItemStyle()}>
-                  <Link href="/dashboard/cotizaciones" legacyBehavior passHref>
+                  <Link href="/dashboard/quotes" legacyBehavior passHref>
                     <NavigationMenuLink
                       className={navigationMenuTriggerStyle()}
                     >
                       Cotizaciones
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem className={navigationMenuItemStyle()}>
-                  <Link href="/dashboard/productos" legacyBehavior passHref>
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      Productos
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
