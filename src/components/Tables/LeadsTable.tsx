@@ -27,7 +27,7 @@ const LeadsTable = (props: Props) => {
             leads?.map((lead) => (
               <tr key={lead.id} className="group text-sm text-gray-200">
                 <div className="grid-rows-max grid-cols-max m-2 grid grid-flow-row items-center gap-2 rounded-lg transition duration-300 ease-in-out group-odd:bg-slate-700/20 group-even:bg-slate-700/50 group-hover:bg-slate-500/30 group-active:bg-slate-500/40">
-                  <div className="col-span-3 row-span-1 whitespace-nowrap px-2 py-4 pl-6 sm:col-span-1">
+                  <div className="col-span-3 row-span-1 whitespace-nowrap px-2 pb-1 pl-6 pt-4 sm:col-span-1">
                     <div className="flex flex-col gap-1">
                       <p className="text-lg font-bold capitalize">
                         {lead.name}
@@ -49,14 +49,14 @@ const LeadsTable = (props: Props) => {
                     </div>
                   </div>
                   <div className="col-span-1 row-span-1 hidden whitespace-nowrap px-2 lowercase sm:block">
-                    <p className="">
+                    <div className="">
                       <div className="flex place-items-center gap-x-2 text-slate-300">
                         <p>{lead.email}</p>
                         {lead.email?.length && (
                           <CopyButton text={lead.email as string} />
                         )}
                       </div>
-                    </p>
+                    </div>
                   </div>
                   <div className="col-span-1 row-span-1 hidden whitespace-nowrap px-2 sm:block">
                     <div className="flex place-items-center gap-x-2">
@@ -68,6 +68,9 @@ const LeadsTable = (props: Props) => {
                   </div>
                   <div className="col-span-3 row-span-1 px-6">
                     <div className="border-b border-slate-300/50"></div>
+                    <div className="mt-2 flex w-fit place-items-center gap-x-2 rounded-full bg-slate-600 px-4 text-slate-300">
+                      <p>{lead.createdAt.toLocaleDateString("es-MX")}</p>
+                    </div>
                     <p className="whitespace-pre-wrap px-2 pb-6 pt-4 text-sm text-slate-400">
                       {lead.message}
                     </p>
