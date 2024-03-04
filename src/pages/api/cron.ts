@@ -3,10 +3,13 @@ import { Resend } from "resend";
 import { env } from "~/env.mjs";
 import Email from "~/server/emails";
 
-export default function handler(_req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  _req: NextApiRequest,
+  res: NextApiResponse
+) {
   const resend = new Resend(env.RESEND_API_KEY);
 
-  resend
+  await resend
     .sendEmail({
       from: "Nuevo Registro <no-reply@nogiistudio.com>",
       to: ["david@nogiistudio.com"],

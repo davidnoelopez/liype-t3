@@ -49,7 +49,7 @@ export const formSubmissionRouter = createTRPCRouter({
 
       const resend = new Resend(env.RESEND_API_KEY);
 
-      resend.sendEmail({
+      await resend.sendEmail({
         from: "Nuevo Registro <no-reply@nogiistudio.com>",
         to: [
           "contacto@liype.com",
@@ -62,6 +62,7 @@ export const formSubmissionRouter = createTRPCRouter({
           formSubmission: submission as FormSubmission,
         }),
       });
+
       return submission;
     }),
 
