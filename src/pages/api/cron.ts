@@ -15,10 +15,10 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse) {
     })
     .then((response) => {
       console.log(response);
+      res.status(200).end("Cron LIYPE!");
     })
     .catch((error) => {
       console.error(error);
+      res.status(500).end("Error en el cron");
     });
-
-  res.status(200).end("Cron LIYPE!");
 }
