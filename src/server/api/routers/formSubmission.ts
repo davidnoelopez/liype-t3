@@ -49,19 +49,26 @@ export const formSubmissionRouter = createTRPCRouter({
 
       const resend = new Resend(env.RESEND_API_KEY);
 
-      await resend.sendEmail({
-        from: "Nuevo Registro <no-reply@nogiistudio.com>",
-        to: [
-          "contacto@liype.com",
-          "operaciones@licenciasypermisos.com.mx",
-          "anapaola.gonzalez@liype.com",
-        ],
-        bcc: "david@nogiistudio.com",
-        subject: "Nuevo registro",
-        react: NewSubmissionEmail({
-          formSubmission: submission as FormSubmission,
-        }),
-      });
+      await resend
+        .sendEmail({
+          from: "Nuevo Registro <no-reply@nogiistudio.com>",
+          to: [
+            "contacto@liype.com",
+            "operaciones@licenciasypermisos.com.mx",
+            "anapaola.gonzalez@liype.com",
+          ],
+          bcc: "david@nogiistudio.com",
+          subject: "Nuevo registro",
+          react: NewSubmissionEmail({
+            formSubmission: submission as FormSubmission,
+          }),
+        })
+        .then(() => {
+          console.log("Registro enviado ", submission.id);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
 
       return submission;
     }),
