@@ -3,11 +3,12 @@
 
 generator client {
     provider = "prisma-client-js"
+    previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+    provider = "sqlite"
+    url      = "file:./dev.db"
     relationMode = "prisma"
 }
 
@@ -18,12 +19,12 @@ model Account {
     type              String
     provider          String
     providerAccountId String
-    refresh_token     String? @db.Text
-    access_token      String? @db.Text
+    refresh_token     String?
+    access_token      String?
     expires_at        Int?
     token_type        String?
     scope             String?
-    id_token          String? @db.Text
+    id_token          String?
     session_state     String?
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -60,14 +61,14 @@ model User {
     accounts      Account[]
     sessions      Session[]
     updatedAt     DateTime?  @updatedAt
-    role          Role       @default(NEW)
+    role          String     @default("NEW")
 }
 
-enum Role {
-    NEW
-    USER
-    ADMIN
-}
+// enum Role {
+//     NEW
+//     USER
+//     ADMIN
+// }
 
 model FormSubmission {
     id        String   @id @default(cuid())
