@@ -58,6 +58,18 @@ const ClientsMarqueeData = [
     name: "Plani Grupo",
     logo: "/assets/clientsLogos/plani_grupo.webp",
   },
+  {
+    name: "Tim Hortons",
+    logo: "/assets/clientsLogos/tim-hortons.webp",
+  },
+  {
+    name: "CPA: Corporate Properties of the Americas",
+    logo: "/assets/clientsLogos/cpa-logo.webp",
+  },
+  {
+    name: "Church's Chicken",
+    logo: "/assets/clientsLogos/churchs-logo.webp",
+  },
 ];
 
 const ClientsMarquee = () => {
