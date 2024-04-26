@@ -73,14 +73,26 @@ const ClientsMarqueeData = [
 ];
 
 const ClientsMarquee = () => {
+  // half of the clients data
+  const ClientsMarqueeData1 = ClientsMarqueeData.slice(
+    0,
+    ClientsMarqueeData.length / 2
+  );
+
+  // half of the clients data
+  const ClientsMarqueeData2 = ClientsMarqueeData.slice(
+    ClientsMarqueeData.length / 2,
+    ClientsMarqueeData.length
+  );
+
   return (
     <div className="px-0 py-10">
       <div className="relative flex gap-10 overflow-hidden pb-10">
         <div className="flex min-w-full shrink-0 animate-marquee items-center justify-around gap-8">
-          {ClientsMarqueeData.map((client, index) => (
+          {ClientsMarqueeData1.map((client, index) => (
             <div
               key={index}
-              className="inline-block h-48 w-48 max-w-xs overflow-hidden rounded-lg bg-white text-center align-middle shadow-lg shadow-slate-400 transition-shadow duration-300 ease-in-out hover:bg-gray-100 hover:shadow-xl hover:shadow-slate-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+              className="inline-block h-48 w-48 max-w-xs select-none overflow-hidden rounded-lg bg-white text-center align-middle shadow-lg shadow-slate-400 transition-shadow duration-300 ease-in-out hover:bg-gray-100 hover:shadow-xl hover:shadow-slate-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
             >
               <Image
                 src={client.logo}
@@ -88,6 +100,7 @@ const ClientsMarquee = () => {
                 width={200}
                 height={200}
                 quality={80}
+                draggable="false"
               />
             </div>
           ))}
@@ -96,28 +109,10 @@ const ClientsMarquee = () => {
           aria-hidden="true"
           className="flex min-w-full shrink-0 animate-marquee items-center justify-around gap-8"
         >
-          {ClientsMarqueeData.map((client, index) => (
+          {ClientsMarqueeData1.map((client, index) => (
             <div
               key={index}
-              className="inline-block h-48 w-48 max-w-xs overflow-hidden rounded-lg bg-white text-center align-middle shadow-lg shadow-slate-400 transition-shadow duration-300 ease-in-out hover:bg-gray-100 hover:shadow-xl hover:shadow-slate-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-            >
-              <Image
-                src={client.logo}
-                alt={client.name}
-                width={200}
-                height={200}
-                quality={100}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="relative flex gap-10 overflow-hidden pb-10">
-        <div className="flex min-w-full shrink-0 animate-marquee-inverted items-center justify-around gap-8">
-          {ClientsMarqueeData.map((client, index) => (
-            <div
-              key={index}
-              className="inline-block h-48 w-48 max-w-xs overflow-hidden rounded-lg bg-white text-center align-middle shadow-lg shadow-slate-400 transition-shadow duration-300 ease-in-out hover:bg-gray-100 hover:shadow-xl hover:shadow-slate-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+              className="inline-block h-48 w-48 max-w-xs select-none overflow-hidden rounded-lg bg-white text-center align-middle shadow-lg shadow-slate-400 transition-shadow duration-300 ease-in-out hover:bg-gray-100 hover:shadow-xl hover:shadow-slate-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
             >
               <Image
                 src={client.logo}
@@ -125,6 +120,26 @@ const ClientsMarquee = () => {
                 width={200}
                 height={200}
                 quality={80}
+                draggable="false"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="relative flex gap-10 overflow-hidden pb-10">
+        <div className="flex min-w-full shrink-0 animate-marquee-inverted items-center justify-around gap-8">
+          {ClientsMarqueeData2.map((client, index) => (
+            <div
+              key={index}
+              className="inline-block h-48 w-48 max-w-xs select-none overflow-hidden rounded-lg bg-white text-center align-middle shadow-lg shadow-slate-400 transition-shadow duration-300 ease-in-out hover:bg-gray-100 hover:shadow-xl hover:shadow-slate-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+            >
+              <Image
+                src={client.logo}
+                alt={client.name}
+                width={200}
+                height={200}
+                quality={80}
+                draggable="false"
               />
             </div>
           ))}
@@ -133,10 +148,10 @@ const ClientsMarquee = () => {
           aria-hidden="true"
           className="flex min-w-full shrink-0 animate-marquee-inverted items-center justify-around gap-8"
         >
-          {ClientsMarqueeData.map((client, index) => (
+          {ClientsMarqueeData2.map((client, index) => (
             <div
               key={index}
-              className="inline-block h-48 w-48 max-w-xs overflow-hidden rounded-lg bg-white text-center align-middle shadow-lg shadow-slate-400 transition-shadow duration-300 ease-in-out hover:bg-gray-100 hover:shadow-xl hover:shadow-slate-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+              className="inline-block h-48 w-48 max-w-xs select-none overflow-hidden rounded-lg bg-white text-center align-middle shadow-lg shadow-slate-400 transition-shadow duration-300 ease-in-out hover:bg-gray-100 hover:shadow-xl hover:shadow-slate-400 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
             >
               <Image
                 src={client.logo}
@@ -144,6 +159,7 @@ const ClientsMarquee = () => {
                 width={200}
                 height={200}
                 quality={100}
+                draggable="false"
               />
             </div>
           ))}
