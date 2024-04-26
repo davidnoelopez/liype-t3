@@ -59,6 +59,7 @@ module.exports = {
       },
       animation: {
         marquee: "marquee 80s linear infinite",
+        "marquee-inverted": "marquee-inverted 80s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
@@ -69,6 +70,14 @@ module.exports = {
           },
           to: {
             transform: "translateX(calc(-100% - 2.5rem))",
+          },
+        },
+        "marquee-inverted": {
+          from: {
+            transform: "translateX(calc(-100% - 2.5rem))",
+          },
+          to: {
+            transform: "translateX(0)",
           },
         },
         "accordion-down": {
