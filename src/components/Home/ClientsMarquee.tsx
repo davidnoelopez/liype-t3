@@ -2,10 +2,10 @@ import Image from "next/image";
 import React from "react";
 
 const ClientsMarqueeData = [
-  {
-    name: "Pollo Maton",
-    logo: "/assets/clientsLogos/pollo_maton.webp",
-  },
+  // {
+  //   name: "Pollo Maton",
+  //   logo: "/assets/clientsLogos/pollo_maton.webp",
+  // },
   {
     name: "Grupo GP",
     logo: "/assets/clientsLogos/grupo_gp.webp",
