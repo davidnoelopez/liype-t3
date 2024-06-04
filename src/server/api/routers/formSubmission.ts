@@ -51,11 +51,7 @@ export const formSubmissionRouter = createTRPCRouter({
 
       const recipients =
         env.NODE_ENV === "production"
-          ? [
-              "contacto@liype.com",
-              "operaciones@licenciasypermisos.com.mx",
-              "anapaola.gonzalez@liype.com",
-            ]
+          ? ["contacto@liype.com", "cgaribaldi@liype.com"]
           : ["davidnoelopez@gmail.com"];
 
       await resend
