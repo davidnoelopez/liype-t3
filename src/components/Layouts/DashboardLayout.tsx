@@ -64,22 +64,20 @@ const DashboardLayout = ({ children }: Props) => {
               </div>
               <NavigationMenu
                 orientation="vertical"
-                defaultValue="clients"
+                defaultValue="leads"
                 className="mt-4 w-full max-w-full items-start"
               >
                 <NavigationMenuList className="w-full flex-col space-x-0 space-y-2">
                   <NavigationMenuItem
-                    value="clients"
+                    value="leads"
                     className={navigationMenuItemStyle()}
                   >
-                    <Link href="/dashboard/clients" legacyBehavior passHref>
+                    <Link href="/dashboard/leads" legacyBehavior passHref>
                       <NavigationMenuLink
                         className={navigationMenuTriggerStyle()}
-                        active={
-                          window.location.pathname === "/dashboard/clients"
-                        }
+                        active={window.location.pathname === "/dashboard/leads"}
                       >
-                        Clientes
+                        Leads
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
@@ -189,7 +187,7 @@ const DashboardLayout = ({ children }: Props) => {
                 <div className="-my-6 divide-y divide-gray-500/10">
                   <div className="flex flex-col items-end space-y-2 py-6">
                     <Link
-                      href="/dashboard/clients"
+                      href="/dashboard/leads"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-200 dark:hover:bg-gray-900 dark:hover:bg-opacity-10 dark:hover:text-gray-100"
                       onClick={() => setMobileMenuOpen(false)}
                       scroll={false}

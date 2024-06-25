@@ -7,7 +7,7 @@ const Clients = () => {
 
   return (
     <div className="m-4">
-      <div className="my-6 text-xl font-extrabold">Clientes</div>
+      <div className="my-6 text-xl font-extrabold">Leads de pagina</div>
       {isLoading ? <Loading /> : <LeadsTable leads={leadsData} />}
     </div>
   );
