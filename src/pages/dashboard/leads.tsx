@@ -2,7 +2,7 @@ import Loading from "~/components/Loading";
 import LeadsTable from "~/components/Tables/LeadsTable";
 import { api } from "~/utils/api";
 
-const Clients = () => {
+const Leads = () => {
   const { data: leadsData, isLoading } = api.formSubmission.getAll.useQuery();
 
   return (
@@ -13,4 +13,4 @@ const Clients = () => {
   );
 };
 
-export default Clients;
+export default Leads;
