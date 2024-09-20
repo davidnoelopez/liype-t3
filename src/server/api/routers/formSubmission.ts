@@ -51,14 +51,14 @@ export const formSubmissionRouter = createTRPCRouter({
 
       const recipients =
         env.NODE_ENV === "production"
-          ? ["contacto@liype.com", "cgaribaldi@liype.com"]
+          ? ["contacto@liype.com"]
           : ["davidnoelopez@gmail.com"];
 
       await resend
         .sendEmail({
           from: "Nuevo Registro <no-reply@nogiistudio.com>",
           to: recipients,
-          bcc: "david@nogiistudio.com",
+          bcc: ["david@nogiistudio.com"],
           subject: "Nuevo registro",
           react: NewSubmissionEmail({
             formSubmission: submission as FormSubmission,
