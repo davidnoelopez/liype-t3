@@ -83,3 +83,66 @@ model FormSubmission {
     state     String
     message   String
 }
+
+model Client {
+    id          String   @id @default(cuid())
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    name        String
+    email       String
+    phone       String?
+    legal_name  String
+    tax_id      String
+    tax_system  String
+    city        String
+    state       String
+    zip         String
+    orders      ServiceOrder[]
+    invoices    Invoice[]
+}
+
+model ServiceOrder {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    status    String
+    client    Client   @relation(fields: [clientId], references: [id])
+    clientId  String
+    invoices  Invoice[]
+
+    @@index([clientId])
+}
+
+model Invoice {
+    id              String   @id @default(cuid())
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime @updatedAt
+    status          String
+    order           ServiceOrder   @relation(fields: [orderId], references: [id])
+    orderId         String
+    client          Client   @relation(fields: [clientId], references: [id])
+    clientId        String
+    items           InvoiceItem[]
+    tax             Float
+    use             String
+    payment_form    String
+    type            String
+    payment_method  String
+    currency        String
+
+    @@index([orderId])
+    @@index([clientId])
+}
+
+model InvoiceItem {
+    id          String   @id @default(cuid())
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    description String
+    quantity    Int
+    price       Float
+    invoice     Invoice   @relation(fields: [invoiceId], references: [id])
+    invoiceId   String
+
+    @@index([invoiceId])
+}
