@@ -1,6 +1,6 @@
 import { FormSubmission } from "@prisma/client";
 import { Resend } from "resend";
-import { z } from "zod";
+import { number, z } from "zod";
 import { env } from "~/env.mjs";
 
 import {
@@ -74,13 +74,29 @@ export const formSubmissionRouter = createTRPCRouter({
       return submission;
     }),
 
-  getAll: protectedProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.formSubmission.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-  }),
+  getAll: protectedProcedure
+    .input(
+      z.object({
+        page: z.number().optional(),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const [count, data] = await ctx.prisma.$transaction([
+        ctx.prisma.formSubmission.count(),
+        ctx.prisma.formSubmission.findMany({
+          take: 10,
+          skip: input.page ? (input.page - 1) * 10 : 0,
+          orderBy: {
+            createdAt: "desc",
+          },
+        }),
+      ]);
+
+      return {
+        count,
+        data,
+      };
+    }),
 
   getById: publicProcedure
     .input(z.string())

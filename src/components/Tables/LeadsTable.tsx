@@ -1,6 +1,7 @@
 import { FormSubmission } from "@prisma/client";
 import React from "react";
 import CopyButton from "../Buttons/CopyButton";
+import { useRouter } from "next/router";
 
 type Props = {
   leads: FormSubmission[] | undefined;
