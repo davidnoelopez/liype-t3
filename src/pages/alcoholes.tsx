@@ -69,8 +69,7 @@ const StepsData: Step[] = [
 const Meta = () => {
   const metaTagsMX = {
     siteName: "Licencias y Permisos - Alcoholes",
-    title:
-      "Licencias de Alcohol en Monterrey, Nuevo León | Tramitación Rápida y Segura",
+    title: "Licencia de Alcoholes en Nuevo León. Tramite Rápido y Seguro",
     description:
       "Obtén tu licencia de alcohol en Monterrey, San Pedro, Guadalupe o San Nicolás de forma rápida y sin complicaciones. Tramitamos de manera segura y eficiente.",
     image: "https://licenciasypermisos.mx/meta-image.png",
