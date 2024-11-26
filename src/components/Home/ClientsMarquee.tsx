@@ -6,25 +6,29 @@ const ClientsMarqueeData = [
   //   name: "Pollo Maton",
   //   logo: "/assets/clientsLogos/pollo_maton.webp",
   // },
+  // {
+  //   name: "Centro Medico Eternal",
+  //   logo: "/assets/clientsLogos/eternal.webp",
+  // },
+  // {
+  //   name: "Centro Medico Sancen",
+  //   logo: "/assets/clientsLogos/sancen.webp",
+  // },
+  // {
+  //   name: "Orage Investments",
+  //   logo: "/assets/clientsLogos/orange_investments.webp",
+  // },
+  // {
+  //   name: "Delicias del Contry",
+  //   logo: "/assets/clientsLogos/delicias.webp",
+  // },
   {
     name: "Grupo GP",
     logo: "/assets/clientsLogos/grupo_gp.webp",
   },
   {
-    name: "Centro Medico Eternal",
-    logo: "/assets/clientsLogos/eternal.webp",
-  },
-  {
     name: "Christus Muguerza",
     logo: "/assets/clientsLogos/christus_muguerza.webp",
-  },
-  {
-    name: "Centro Medico Sancen",
-    logo: "/assets/clientsLogos/sancen.webp",
-  },
-  {
-    name: "Orage Investments",
-    logo: "/assets/clientsLogos/orange_investments.webp",
   },
   {
     name: "Posadas",
@@ -34,17 +38,13 @@ const ClientsMarqueeData = [
     name: "Las Alitas",
     logo: "/assets/clientsLogos/las_alitas.webp",
   },
-  {
-    name: "Noreste Grill",
-    logo: "/assets/clientsLogos/noreste_grill.webp",
-  },
+  // {
+  //   name: "Noreste Grill",
+  //   logo: "/assets/clientsLogos/noreste_grill.webp",
+  // },
   {
     name: "Live Aqua",
     logo: "/assets/clientsLogos/live_aqua.webp",
-  },
-  {
-    name: "Delicias del Contry",
-    logo: "/assets/clientsLogos/delicias.webp",
   },
   {
     name: "Soriana",
