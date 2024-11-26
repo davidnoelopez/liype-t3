@@ -263,7 +263,7 @@ const About = () => {
                     </h3>
                   </div>
                   <div className="ml-20 flex flex-col items-center justify-center">
-                    <p className="text-gray-500 dark:text-gray-400">
+                    <p className="text-lg text-gray-500 dark:text-gray-400">
                       {value.description.filter(
                         (item) => item.locale === locale
                       )[0]?.text || ""}
@@ -293,7 +293,7 @@ const DataCard = ({ title, description, icon }: DataCardProps) => {
       <h3 className="text-center text-2xl font-semibold capitalize text-gray-700 dark:text-white">
         {title}
       </h3>
-      <p className="text-center text-gray-500 dark:text-gray-400">
+      <p className="text-center text-lg text-gray-500 dark:text-gray-400">
         {description}
       </p>
     </div>
