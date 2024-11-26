@@ -350,7 +350,7 @@ const OtherServicesTop = (service: Service) => {
       viewport={{ once: true }}
       variants={enterTop}
     >
-      <dt className="flex h-full w-full cursor-default items-center rounded-lg border border-slate-400/30 bg-slate-200/50 p-4 text-center text-lg font-medium leading-6 text-gray-600 dark:border-slate-400/20 dark:bg-slate-900/20 dark:text-gray-300">
+      <dt className="h-full w-full cursor-default content-center items-center rounded-lg border border-slate-400/30 bg-slate-200/50 p-4 text-center text-lg font-medium leading-6 text-gray-600 dark:border-slate-400/20 dark:bg-slate-900/20 dark:text-gray-300">
         {service.title.filter((t) => t.locale === locale)[0]?.text}
       </dt>
     </motion.div>
