@@ -31,7 +31,7 @@ export const ContactInfo: {
   title: [
     {
       locale: "es-MX",
-      text: "Contactanos",
+      text: "Contáctanos",
     },
     {
       locale: "en-US",
@@ -41,7 +41,7 @@ export const ContactInfo: {
   description: [
     {
       locale: "es-MX",
-      text: "Contáctanos para recibir sin costo una auditoria del estatus real de tu negocio y asi poder regularizarlo. Nosotros lo tramitamos por ti.",
+      text: "Contáctanos para recibir sin costo una auditoría del estatus real de tu negocio y asi poder regularizarlo. Nosotros lo tramitamos por ti.",
     },
     {
       locale: "en-US",

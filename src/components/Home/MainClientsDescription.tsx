@@ -41,7 +41,7 @@ const ClientsGeneralData: Client[] = [
     description: [
       {
         locale: "es-MX",
-        text: "Servicio de auditoria y gestoria ante todas las dependencias correspondientes para regular la construcción y gestiones del Instituto Regional y Catastral.",
+        text: "Servicio de auditoría y gestoría ante todas las dependencias correspondientes para regular la construcción y gestiones del Instituto Regional y Catastral.",
       },
       {
         locale: "en-US",

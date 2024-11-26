@@ -144,7 +144,7 @@ const About = () => {
         description: [
           {
             locale: "es-MX",
-            text: "La confianza de nuestros clientes ha sido fundamentada por la contante comunicación entre nuestro equipo y las personas involucradas en la gestoría, ahorrándose tiempo en filas, documentación errónea y multas por malas practicas.",
+            text: "La confianza de nuestros clientes ha sido fundamentada por la contante comunicación entre nuestro equipo y las personas involucradas en la gestoría, ahorrándose tiempo en filas, documentación errónea y multas por malas prácticas.",
           },
           {
             locale: "en-US",

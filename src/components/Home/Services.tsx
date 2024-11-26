@@ -26,7 +26,7 @@ const titles: {
     text: [
       {
         locale: "es-MX",
-        text: "Contamos con amplio catalogo de servicios",
+        text: "Contamos con amplio catálogo de servicios",
       },
       {
         locale: "en-US",
@@ -206,7 +206,7 @@ const OtherServices: Service[] = [
     title: [
       {
         locale: "es-MX",
-        text: "Factibilidad y Autorización de proyectos de Agua, Drenaje, Pluvial, Gas, Telefonia y CFE",
+        text: "Factibilidad y Autorización de proyectos de Agua, Drenaje, Pluvial, Gas, Telefonía y CFE",
       },
       {
         locale: "en-US",
@@ -245,7 +245,7 @@ const OtherServices: Service[] = [
     title: [
       {
         locale: "es-MX",
-        text: "Licencia de Funcionamiento Secretaria de Salud",
+        text: "Licencia de Funcionamiento Secretaría de Salud",
       },
       {
         locale: "en-US",
@@ -310,7 +310,7 @@ const OtherServices: Service[] = [
     title: [
       {
         locale: "es-MX",
-        text: "Permiso de Espectaculos",
+        text: "Permiso de Espectáculos",
       },
       {
         locale: "en-US",

@@ -46,7 +46,7 @@ export const defaultData: DefaultData = {
   callToAction: [
     {
       locale: "es-MX",
-      text: "Contáctanos para recibir sin costo una auditoria del estatus real de tu negocio.",
+      text: "Contáctanos para recibir sin costo una auditoría del estatus real de tu negocio.",
     },
     {
       locale: "en-US",
@@ -56,7 +56,7 @@ export const defaultData: DefaultData = {
   contactButtonText: [
     {
       locale: "es-MX",
-      text: "Contactanos",
+      text: "Contáctanos",
     },
     {
       locale: "en-US",
